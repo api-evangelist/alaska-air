@@ -1,7 +1,12 @@
 aid: alaska-air
-url: https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.alaska-air.com
+description: >-
+  Alaska Air Group is the parent company of Alaska Airlines and Horizon Air, providing
+  passenger and cargo air transportation throughout the United States, Mexico, Canada,
+  Costa Rica, and Belize.
