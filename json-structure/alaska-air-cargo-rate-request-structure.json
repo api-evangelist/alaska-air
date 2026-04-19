@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-cargo-rate-request-structure.json",
+  "name": "RateRequest",
+  "type": "object",
+  "description": "Request for cargo rate estimate",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "HNL"
+    },
+    "shipDate": {
+      "type": "date",
+      "description": "Desired ship date",
+      "example": "2026-04-20"
+    },
+    "weight": {
+      "type": "double",
+      "description": "Shipment weight",
+      "example": 45.5
+    },
+    "weightUnit": {
+      "type": "string",
+      "description": "Weight unit",
+      "enum": [
+        "KG",
+        "LB"
+      ],
+      "example": "KG"
+    },
+    "pieces": {
+      "type": "int32",
+      "description": "Number of pieces",
+      "example": 3
+    }
+  },
+  "required": [
+    "origin",
+    "destination",
+    "shipDate",
+    "weight"
+  ]
+}

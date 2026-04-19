@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-mileage-plan-transaction-list-schema.json",
+  "title": "TransactionList",
+  "description": "List of Mileage Plan transactions",
+  "type": "object",
+  "properties": {
+    "memberId": {
+      "type": "string",
+      "description": "Member number",
+      "example": "12345678"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Transaction"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total transaction count",
+      "example": 42
+    }
+  }
+}

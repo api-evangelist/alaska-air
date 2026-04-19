@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-status-aircraft-structure.json",
+  "name": "Aircraft",
+  "type": "object",
+  "description": "Aircraft information for the flight",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Aircraft type/model",
+      "example": "Boeing 737-900ER"
+    },
+    "tailNumber": {
+      "type": "string",
+      "description": "Aircraft tail number (registration)",
+      "example": "N491AS"
+    }
+  }
+}

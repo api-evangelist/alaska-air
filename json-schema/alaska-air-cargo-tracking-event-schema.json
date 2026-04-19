@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-cargo-tracking-event-schema.json",
+  "title": "TrackingEvent",
+  "description": "A cargo tracking event",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event timestamp",
+      "example": "2026-04-20T10:30:00-07:00"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location IATA code",
+      "example": "SEA"
+    },
+    "event": {
+      "type": "string",
+      "description": "Event type",
+      "example": "Accepted"
+    },
+    "description": {
+      "type": "string",
+      "description": "Event description",
+      "example": "Shipment accepted at Seattle"
+    }
+  }
+}

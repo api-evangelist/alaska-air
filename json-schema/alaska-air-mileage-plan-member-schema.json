@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-mileage-plan-member-schema.json",
+  "title": "Member",
+  "description": "Alaska Airlines Mileage Plan member",
+  "type": "object",
+  "properties": {
+    "memberId": {
+      "type": "string",
+      "description": "Mileage Plan member number",
+      "example": "12345678"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Member first name",
+      "example": "Jane"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Member last name",
+      "example": "Smith"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Member email address",
+      "example": "jsmith@example.com"
+    },
+    "tier": {
+      "type": "string",
+      "description": "Current MVP tier status",
+      "enum": [
+        "Member",
+        "MVP",
+        "MVP Gold",
+        "MVP Gold 75K"
+      ],
+      "example": "MVP Gold 75K"
+    },
+    "mileBalance": {
+      "type": "integer",
+      "description": "Current available mile balance",
+      "example": 125000
+    },
+    "tierMiles": {
+      "type": "integer",
+      "description": "Miles earned toward tier qualification",
+      "example": 78500
+    },
+    "memberSince": {
+      "type": "string",
+      "format": "date",
+      "description": "Membership start date",
+      "example": "2018-03-15"
+    }
+  }
+}

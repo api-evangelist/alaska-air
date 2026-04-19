@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-schedules-schedule-response-structure.json",
+  "name": "ScheduleResponse",
+  "type": "object",
+  "description": "Flight schedule query response",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "LAX"
+    },
+    "departureDate": {
+      "type": "date",
+      "description": "Query departure date",
+      "example": "2026-04-19"
+    },
+    "schedules": {
+      "type": "array",
+      "description": "List of scheduled flights",
+      "items": {
+        "$ref": "#/components/schemas/Schedule"
+      }
+    }
+  }
+}

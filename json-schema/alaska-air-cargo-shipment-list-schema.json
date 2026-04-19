@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-cargo-shipment-list-schema.json",
+  "title": "ShipmentList",
+  "description": "List of cargo shipments",
+  "type": "object",
+  "properties": {
+    "shipments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Shipment"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total shipment count",
+      "example": 42
+    }
+  }
+}

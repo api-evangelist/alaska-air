@@ -1,0 +1,187 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alaska Airlines Travel Operations
+  description: >-
+    Workflow capability combining Alaska Airlines Flight Status and Cargo APIs
+    for travel operations management. Enables travel agents, corporate travel
+    managers, and freight forwarders to track flights, monitor cargo shipments,
+    and get rate estimates in a unified interface.
+  tags:
+    - Alaska Airlines
+    - Travel Operations
+    - Aviation
+    - Cargo
+    - Flight Status
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALASKA_API_KEY: ALASKA_API_KEY
+      ALASKA_CARGO_API_KEY: ALASKA_CARGO_API_KEY
+
+capability:
+  consumes:
+    - import: alaska-flight-status
+      location: ./shared/flight-status-api.yaml
+    - import: alaska-cargo
+      location: ./shared/cargo-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: alaska-travel-ops-api
+      description: Unified REST API for Alaska Airlines travel operations.
+      resources:
+        - path: /v1/flights
+          name: flights
+          description: Flight status and scheduling
+          operations:
+            - method: GET
+              name: list-flights
+              description: List Alaska Airlines flights by route and date
+              call: "alaska-flight-status.list-flights"
+              with:
+                originAirport: "rest.originAirport"
+                destinationAirport: "rest.destinationAirport"
+                flightDate: "rest.flightDate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/flights/{flightNumber}/status
+          name: flight-status
+          description: Real-time flight status
+          operations:
+            - method: GET
+              name: get-flight-status
+              description: Get real-time status for a specific flight
+              call: "alaska-flight-status.get-flight-status"
+              with:
+                flightNumber: "rest.flightNumber"
+                flightDate: "rest.flightDate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/cargo/shipments
+          name: cargo-shipments
+          description: Cargo shipment booking and listing
+          operations:
+            - method: GET
+              name: list-cargo-shipments
+              description: List cargo shipments
+              call: "alaska-cargo.list-shipments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: book-cargo-shipment
+              description: Book a new cargo shipment
+              call: "alaska-cargo.create-shipment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/cargo/shipments/{awbNumber}
+          name: cargo-tracking
+          description: Cargo shipment tracking
+          operations:
+            - method: GET
+              name: track-cargo-shipment
+              description: Track cargo shipment by AWB number
+              call: "alaska-cargo.get-shipment"
+              with:
+                awbNumber: "rest.awbNumber"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/cargo/rates
+          name: cargo-rates
+          description: Cargo rate estimation
+          operations:
+            - method: POST
+              name: get-cargo-rate
+              description: Get cargo rate estimate
+              call: "alaska-cargo.get-rate-estimate"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: alaska-travel-ops-mcp
+      transport: http
+      description: MCP server for AI-assisted Alaska Airlines travel operations.
+      tools:
+        - name: list-alaska-flights
+          description: >-
+            List Alaska Airlines flights for a specific route and date with
+            real-time status, delays, and gate assignments.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-flight-status.list-flights"
+          with:
+            originAirport: "tools.originAirport"
+            destinationAirport: "tools.destinationAirport"
+            flightDate: "tools.flightDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alaska-flight-status
+          description: >-
+            Get real-time status for a specific Alaska Airlines flight including
+            departure/arrival times, gate, and delay information.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-flight-status.get-flight-status"
+          with:
+            flightNumber: "tools.flightNumber"
+            flightDate: "tools.flightDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-cargo-rate-estimate
+          description: >-
+            Get rate estimate for Alaska Air Cargo shipment based on origin,
+            destination, weight, and number of pieces.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-cargo.get-rate-estimate"
+          with:
+            origin: "tools.origin"
+            destination: "tools.destination"
+            weight: "tools.weight"
+            pieces: "tools.pieces"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: book-cargo-shipment
+          description: Book a new Alaska Air Cargo shipment to 115+ destinations worldwide
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "alaska-cargo.create-shipment"
+          with:
+            origin: "tools.origin"
+            destination: "tools.destination"
+            shipDate: "tools.shipDate"
+            weight: "tools.weight"
+            pieces: "tools.pieces"
+            commodity: "tools.commodity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: track-cargo-shipment
+          description: Track Alaska Air Cargo shipment by Air Waybill number with event history
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-cargo.get-shipment"
+          with:
+            awbNumber: "tools.awbNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."

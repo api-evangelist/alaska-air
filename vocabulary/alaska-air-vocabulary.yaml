@@ -1,0 +1,342 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Alaska Airlines
+  description: >-
+    Unified taxonomy for Alaska Airlines covering flight status, schedules,
+    cargo, and Mileage Plan loyalty APIs.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: alaska-flight-status
+      version: "1.0.0"
+      baseUrl: "https://api.alaskaair.com/v1"
+      status: active
+      description: Real-time flight status for Alaska Airlines and Horizon Air
+    - namespace: alaska-flight-schedules
+      version: "1.0.0"
+      baseUrl: "https://api.alaskaair.com/v1"
+      status: active
+      description: Flight schedule data and airport information
+    - namespace: alaska-cargo
+      version: "1.0.0"
+      baseUrl: "https://api.alaskacargo.com/v1"
+      status: active
+      description: Cargo booking, tracking, and rate estimation
+    - namespace: alaska-mileage-plan
+      version: "1.0.0"
+      baseUrl: "https://api.alaskaair.com/loyalty/v1"
+      status: active
+      description: Mileage Plan loyalty member and partner miles API
+
+  resources:
+    - name: flights
+      apis:
+        - alaska-flight-status
+        - alaska-flight-schedules
+      actions:
+        - list
+        - get
+      description: Alaska Airlines and Horizon Air flight operations
+    - name: airports
+      apis:
+        - alaska-flight-schedules
+      actions:
+        - list
+      description: Airports served by Alaska Airlines
+    - name: shipments
+      apis:
+        - alaska-cargo
+      actions:
+        - create
+        - list
+        - get
+      description: Alaska Air Cargo shipments
+    - name: rates
+      apis:
+        - alaska-cargo
+      actions:
+        - estimate
+      description: Cargo rate estimates
+    - name: members
+      apis:
+        - alaska-mileage-plan
+      actions:
+        - get
+      description: Mileage Plan loyalty members
+    - name: transactions
+      apis:
+        - alaska-mileage-plan
+      actions:
+        - list
+      description: Mile earn and redemption transactions
+    - name: partner-miles
+      apis:
+        - alaska-mileage-plan
+      actions:
+        - report
+      description: Partner mile accrual reporting
+
+  actions:
+    - name: list
+      httpMethods:
+        - GET
+      pattern: read
+      description: List resources with optional filtering
+    - name: get
+      httpMethods:
+        - GET
+      pattern: read
+      description: Retrieve a specific resource
+    - name: create
+      httpMethods:
+        - POST
+      pattern: write
+      description: Create a new resource
+    - name: estimate
+      httpMethods:
+        - POST
+      pattern: query
+      description: Get an estimate or quote
+    - name: report
+      httpMethods:
+        - POST
+      pattern: write
+      description: Report partner activity
+
+  schemas:
+    flight:
+      - name: FlightStatus
+        description: Real-time flight status with departure and arrival information
+        keyProperties:
+          - flightNumber
+          - carrier
+          - status
+          - origin
+          - destination
+          - aircraft
+      - name: FlightSummary
+        description: Summary flight data for route listings
+        keyProperties:
+          - flightNumber
+          - status
+          - scheduledDeparture
+          - scheduledArrival
+          - delayMinutes
+    schedule:
+      - name: Schedule
+        description: Scheduled flight data with operating days and equipment
+        keyProperties:
+          - flightNumber
+          - departureTime
+          - arrivalTime
+          - duration
+          - aircraft
+          - operatingDays
+    cargo:
+      - name: Shipment
+        description: Alaska Air Cargo shipment booking
+        keyProperties:
+          - awbNumber
+          - status
+          - origin
+          - destination
+          - shipDate
+          - totalCharge
+      - name: ShipmentTracking
+        description: Shipment tracking with event history
+        keyProperties:
+          - awbNumber
+          - status
+          - currentLocation
+          - events
+    loyalty:
+      - name: Member
+        description: Mileage Plan loyalty member
+        keyProperties:
+          - memberId
+          - tier
+          - mileBalance
+          - tierMiles
+      - name: Transaction
+        description: Mile earn or redemption transaction
+        keyProperties:
+          - transactionId
+          - type
+          - miles
+          - partner
+
+  parameters:
+    identifiers:
+      - name: flightNumber
+        description: Alaska Airlines flight number (e.g., AS123)
+        type: string
+      - name: awbNumber
+        description: Air Waybill number for cargo tracking
+        type: string
+      - name: memberId
+        description: Mileage Plan member number
+        type: string
+    filters:
+      - name: originAirport
+        description: IATA origin airport code (e.g., SEA)
+        type: string
+      - name: destinationAirport
+        description: IATA destination airport code (e.g., LAX)
+        type: string
+      - name: flightDate
+        description: Flight operating date (YYYY-MM-DD)
+        type: string
+      - name: carrier
+        description: Operating carrier code (AS or QX)
+        type: string
+
+  enums:
+    flightStatus:
+      - On Time
+      - Delayed
+      - Cancelled
+      - Departed
+      - Arrived
+      - Diverted
+    carriers:
+      - AS
+      - QX
+    shipmentStatus:
+      - Booked
+      - In Transit
+      - Delivered
+      - Cancelled
+    mileageTiers:
+      - Member
+      - MVP
+      - MVP Gold
+      - MVP Gold 75K
+    weightUnits:
+      - KG
+      - LB
+
+  authentication:
+    schemes:
+      - name: API Key (Azure)
+        description: Azure API Management subscription key in header
+        apis:
+          - alaska-flight-status
+          - alaska-flight-schedules
+          - alaska-cargo
+        headerName: Ocp-Apim-Subscription-Key
+      - name: OAuth2
+        description: OAuth 2.0 client credentials for Mileage Plan API
+        apis:
+          - alaska-mileage-plan
+        scopes:
+          - loyalty:read
+          - loyalty:write
+
+capability:
+  workflows:
+    - name: Travel Operations
+      file: capabilities/travel-operations.yaml
+      description: Flight tracking and cargo management for travel operations
+      apisCombined:
+        - alaska-flight-status
+        - alaska-cargo
+      toolCount: 5
+      personas:
+        - Travel Agent
+        - Freight Forwarder
+        - Corporate Travel Manager
+
+  personas:
+    - id: travel-agent
+      name: Travel Agent
+      description: >-
+        Travel professional monitoring Alaska Airlines flight status and
+        delays for customer itinerary management.
+      workflows:
+        - Travel Operations
+    - id: freight-forwarder
+      name: Freight Forwarder
+      description: >-
+        Cargo professional booking and tracking Alaska Air Cargo shipments
+        across 115+ domestic and international destinations.
+      workflows:
+        - Travel Operations
+    - id: corporate-travel-manager
+      name: Corporate Travel Manager
+      description: >-
+        Corporate travel manager tracking employee flights on Alaska Airlines
+        and managing cargo logistics.
+      workflows:
+        - Travel Operations
+
+  domains:
+    - name: Flight Operations
+      description: Real-time flight status, schedules, and airport data
+      resources:
+        - flights
+        - airports
+    - name: Cargo Logistics
+      description: Cargo booking, tracking, and rate management
+      resources:
+        - shipments
+        - rates
+    - name: Loyalty
+      description: Mileage Plan member management and partner miles
+      resources:
+        - members
+        - transactions
+        - partner-miles
+
+  namespaces:
+    - name: alaska-flight-status
+      type: consumed
+      baseUri: "https://api.alaskaair.com/v1"
+    - name: alaska-cargo
+      type: consumed
+      baseUri: "https://api.alaskacargo.com/v1"
+    - name: alaska-travel-ops-api
+      type: rest
+      port: 8080
+    - name: alaska-travel-ops-mcp
+      type: mcp
+      port: 9090
+
+  binds:
+    - name: ALASKA_API_KEY
+      description: Azure API Management subscription key for Alaska Airlines APIs
+      workflows:
+        - Travel Operations
+    - name: ALASKA_CARGO_API_KEY
+      description: API key for Alaska Air Cargo API
+      workflows:
+        - Travel Operations
+
+crossReference:
+  - resource: flights
+    operations:
+      - list
+      - get
+    workflows:
+      - Travel Operations
+    personas:
+      - Travel Agent
+      - Corporate Travel Manager
+  - resource: shipments
+    operations:
+      - create
+      - list
+      - get
+    workflows:
+      - Travel Operations
+    personas:
+      - Freight Forwarder
+  - resource: rates
+    operations:
+      - estimate
+    workflows:
+      - Travel Operations
+    personas:
+      - Freight Forwarder

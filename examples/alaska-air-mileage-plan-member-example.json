@@ -1,0 +1,10 @@
+{
+  "memberId": "12345678",
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jsmith@example.com",
+  "tier": "MVP Gold 75K",
+  "mileBalance": 125000,
+  "tierMiles": 78500,
+  "memberSince": "2018-03-15"
+}

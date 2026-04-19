@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-status-flight-summary-structure.json",
+  "name": "FlightSummary",
+  "type": "object",
+  "description": "Summary flight information for route listing",
+  "properties": {
+    "flightNumber": {
+      "type": "string",
+      "description": "Flight number",
+      "example": "AS123"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Operating carrier code",
+      "example": "AS"
+    },
+    "status": {
+      "type": "string",
+      "description": "Flight status",
+      "example": "On Time"
+    },
+    "scheduledDeparture": {
+      "type": "datetime",
+      "description": "Scheduled departure time",
+      "example": "2026-04-19T08:30:00-07:00"
+    },
+    "scheduledArrival": {
+      "type": "datetime",
+      "description": "Scheduled arrival time",
+      "example": "2026-04-19T11:05:00-07:00"
+    },
+    "delayMinutes": {
+      "type": "int32",
+      "description": "Delay in minutes",
+      "example": 0
+    }
+  }
+}

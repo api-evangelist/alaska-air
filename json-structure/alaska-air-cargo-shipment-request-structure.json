@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-cargo-shipment-request-structure.json",
+  "name": "ShipmentRequest",
+  "type": "object",
+  "description": "Request body for creating a cargo shipment booking",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "HNL"
+    },
+    "shipDate": {
+      "type": "date",
+      "description": "Desired ship date (YYYY-MM-DD)",
+      "example": "2026-04-20"
+    },
+    "commodity": {
+      "type": "string",
+      "description": "Commodity description",
+      "example": "Electronics"
+    },
+    "weight": {
+      "type": "double",
+      "description": "Total shipment weight",
+      "example": 45.5
+    },
+    "weightUnit": {
+      "type": "string",
+      "description": "Weight unit",
+      "enum": [
+        "KG",
+        "LB"
+      ],
+      "example": "KG"
+    },
+    "pieces": {
+      "type": "int32",
+      "description": "Number of pieces in shipment",
+      "example": 3
+    },
+    "dimensions": {
+      "$ref": "#/components/schemas/Dimensions"
+    },
+    "specialHandling": {
+      "type": "array",
+      "description": "Special handling requirements",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Fragile"
+      ]
+    }
+  },
+  "required": [
+    "origin",
+    "destination",
+    "shipDate",
+    "weight",
+    "pieces"
+  ]
+}

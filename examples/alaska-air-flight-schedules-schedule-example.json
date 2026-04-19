@@ -1,0 +1,13 @@
+{
+  "flightNumber": "AS123",
+  "carrier": "AS",
+  "departureTime": "08:30",
+  "arrivalTime": "11:05",
+  "duration": 155,
+  "aircraft": "Boeing 737-900ER",
+  "operatingDays": [
+    "example-string"
+  ],
+  "stops": 0,
+  "cabin": "Economy"
+}

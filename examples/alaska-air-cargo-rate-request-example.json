@@ -1,0 +1,8 @@
+{
+  "origin": "SEA",
+  "destination": "HNL",
+  "shipDate": "2026-04-20",
+  "weight": 45.5,
+  "weightUnit": "KG",
+  "pieces": 3
+}

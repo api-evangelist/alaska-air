@@ -1,0 +1,11 @@
+{
+  "flightNumber": "AS123",
+  "flightDate": "2026-04-19",
+  "carrier": "AS",
+  "status": "On Time",
+  "delayMinutes": 0,
+  "delayReason": "Late arriving aircraft",
+  "origin": "SEA",
+  "destination": "LAX",
+  "aircraft": "example-string"
+}

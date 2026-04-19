@@ -1,0 +1,171 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alaska Air Cargo API
+  description: >-
+    Shared capability definition for the Alaska Air Cargo API enabling
+    shipment booking, tracking, and rate estimation across 115+ destinations.
+  tags:
+    - Alaska Airlines
+    - Cargo
+    - Freight
+    - Shipping
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALASKA_CARGO_API_KEY: ALASKA_CARGO_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: alaska-cargo
+      baseUri: "https://api.alaskacargo.com/v1"
+      description: Alaska Air Cargo API
+      authentication:
+        type: apikey
+        key: Ocp-Apim-Subscription-Key
+        value: "{{env.ALASKA_CARGO_API_KEY}}"
+        placement: header
+      resources:
+        - name: shipments
+          path: /shipments
+          description: Cargo shipment booking and listing
+          operations:
+            - name: create-shipment
+              method: POST
+              description: Book a new cargo shipment
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  origin: "{{tools.origin}}"
+                  destination: "{{tools.destination}}"
+                  shipDate: "{{tools.shipDate}}"
+                  weight: "{{tools.weight}}"
+                  pieces: "{{tools.pieces}}"
+            - name: list-shipments
+              method: GET
+              description: List cargo shipments
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: Status filter
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: shipment-tracking
+          path: /shipments/{awbNumber}
+          description: Shipment tracking by AWB
+          operations:
+            - name: get-shipment
+              method: GET
+              description: Get shipment tracking details
+              inputParameters:
+                - name: awbNumber
+                  in: path
+                  type: string
+                  required: true
+                  description: Air Waybill number
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: rates
+          path: /rates
+          description: Cargo rate estimation
+          operations:
+            - name: get-rate-estimate
+              method: POST
+              description: Get cargo rate estimate
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  origin: "{{tools.origin}}"
+                  destination: "{{tools.destination}}"
+                  weight: "{{tools.weight}}"
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: alaska-cargo-api
+      resources:
+        - path: /v1/shipments
+          name: shipments
+          description: Cargo shipment booking and tracking
+          operations:
+            - method: GET
+              name: list-shipments
+              description: List cargo shipments
+              call: "alaska-cargo.list-shipments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-shipment
+              description: Book a new cargo shipment
+              call: "alaska-cargo.create-shipment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: alaska-cargo-mcp
+      transport: http
+      tools:
+        - name: get-cargo-rate
+          description: Get rate estimate for Alaska Air Cargo shipment
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-cargo.get-rate-estimate"
+          with:
+            origin: "tools.origin"
+            destination: "tools.destination"
+            weight: "tools.weight"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-cargo-shipment
+          description: Book a new cargo shipment with Alaska Air Cargo
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "alaska-cargo.create-shipment"
+          with:
+            origin: "tools.origin"
+            destination: "tools.destination"
+            shipDate: "tools.shipDate"
+            weight: "tools.weight"
+            pieces: "tools.pieces"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: track-cargo-shipment
+          description: Track Alaska Air Cargo shipment by Air Waybill number
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alaska-cargo.get-shipment"
+          with:
+            awbNumber: "tools.awbNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."

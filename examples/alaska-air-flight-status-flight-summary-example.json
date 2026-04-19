@@ -1,0 +1,8 @@
+{
+  "flightNumber": "AS123",
+  "carrier": "AS",
+  "status": "On Time",
+  "scheduledDeparture": "2026-04-19T08:30:00-07:00",
+  "scheduledArrival": "2026-04-19T11:05:00-07:00",
+  "delayMinutes": 0
+}

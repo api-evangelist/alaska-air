@@ -1,0 +1,7 @@
+{
+  "transactionId": "TXN-111222",
+  "memberId": "12345678",
+  "miles": 500,
+  "newBalance": 125500,
+  "status": "credited"
+}

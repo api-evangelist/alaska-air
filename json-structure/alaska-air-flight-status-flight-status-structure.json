@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-status-flight-status-structure.json",
+  "name": "FlightStatus",
+  "type": "object",
+  "description": "Real-time status for an Alaska Airlines flight",
+  "properties": {
+    "flightNumber": {
+      "type": "string",
+      "description": "Flight number including carrier code",
+      "example": "AS123"
+    },
+    "flightDate": {
+      "type": "date",
+      "description": "Flight operating date",
+      "example": "2026-04-19"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Operating carrier code",
+      "enum": [
+        "AS",
+        "QX"
+      ],
+      "example": "AS"
+    },
+    "status": {
+      "type": "string",
+      "description": "Flight status description",
+      "enum": [
+        "On Time",
+        "Delayed",
+        "Cancelled",
+        "Departed",
+        "Arrived",
+        "Diverted"
+      ],
+      "example": "On Time"
+    },
+    "delayMinutes": {
+      "type": "int32",
+      "description": "Delay in minutes (0 if on time)",
+      "example": 0
+    },
+    "delayReason": {
+      "type": "string",
+      "description": "Reason for delay if applicable",
+      "example": "Late arriving aircraft"
+    },
+    "origin": {
+      "$ref": "#/components/schemas/Airport"
+    },
+    "destination": {
+      "$ref": "#/components/schemas/Airport"
+    },
+    "aircraft": {
+      "$ref": "#/components/schemas/Aircraft"
+    }
+  }
+}

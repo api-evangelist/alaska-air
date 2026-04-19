@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-cargo-shipment-list-structure.json",
+  "name": "ShipmentList",
+  "type": "object",
+  "description": "List of cargo shipments",
+  "properties": {
+    "shipments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Shipment"
+      }
+    },
+    "totalCount": {
+      "type": "int32",
+      "description": "Total shipment count",
+      "example": 42
+    }
+  }
+}

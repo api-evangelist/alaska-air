@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-cargo-shipment-tracking-schema.json",
+  "title": "ShipmentTracking",
+  "description": "Shipment tracking details with event history",
+  "type": "object",
+  "properties": {
+    "awbNumber": {
+      "type": "string",
+      "description": "Air Waybill number",
+      "example": "027-12345678"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status",
+      "example": "In Transit"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "HNL"
+    },
+    "currentLocation": {
+      "type": "string",
+      "description": "Current location IATA code",
+      "example": "SEA"
+    },
+    "estimatedDelivery": {
+      "type": "string",
+      "format": "date",
+      "description": "Estimated delivery date",
+      "example": "2026-04-21"
+    },
+    "events": {
+      "type": "array",
+      "description": "Tracking event history",
+      "items": {
+        "$ref": "#/components/schemas/TrackingEvent"
+      }
+    }
+  }
+}

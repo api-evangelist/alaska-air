@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-cargo-dimensions-structure.json",
+  "name": "Dimensions",
+  "type": "object",
+  "description": "Package dimensions",
+  "properties": {
+    "length": {
+      "type": "double",
+      "description": "Package length",
+      "example": 60
+    },
+    "width": {
+      "type": "double",
+      "description": "Package width",
+      "example": 40
+    },
+    "height": {
+      "type": "double",
+      "description": "Package height",
+      "example": 30
+    },
+    "unit": {
+      "type": "string",
+      "description": "Dimension unit",
+      "enum": [
+        "CM",
+        "IN"
+      ],
+      "example": "CM"
+    }
+  }
+}

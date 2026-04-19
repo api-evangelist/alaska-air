@@ -1,0 +1,13 @@
+{
+  "origin": "SEA",
+  "destination": "HNL",
+  "shipDate": "2026-04-20",
+  "commodity": "Electronics",
+  "weight": 45.5,
+  "weightUnit": "KG",
+  "pieces": 3,
+  "dimensions": "example-string",
+  "specialHandling": [
+    "example-string"
+  ]
+}

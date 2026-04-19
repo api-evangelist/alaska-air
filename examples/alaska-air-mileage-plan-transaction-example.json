@@ -1,0 +1,8 @@
+{
+  "transactionId": "TXN-987654",
+  "type": "earn",
+  "miles": 2500,
+  "description": "Flight AS123 SEA-LAX",
+  "date": "2026-04-19",
+  "partner": "Alaska Airlines"
+}

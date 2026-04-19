@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-mileage-plan-partner-miles-request-structure.json",
+  "name": "PartnerMilesRequest",
+  "type": "object",
+  "description": "Request to report partner miles for a Mileage Plan member",
+  "properties": {
+    "memberId": {
+      "type": "string",
+      "description": "Mileage Plan member number",
+      "example": "12345678"
+    },
+    "partnerId": {
+      "type": "string",
+      "description": "Registered partner identifier",
+      "example": "MARRIOTT"
+    },
+    "activityType": {
+      "type": "string",
+      "description": "Type of partner activity",
+      "enum": [
+        "hotel_stay",
+        "car_rental",
+        "retail",
+        "flight",
+        "dining"
+      ],
+      "example": "hotel_stay"
+    },
+    "activityDate": {
+      "type": "date",
+      "description": "Date of partner activity",
+      "example": "2026-04-15"
+    },
+    "activityAmount": {
+      "type": "double",
+      "description": "Transaction amount in partner currency",
+      "example": 285.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code",
+      "example": "USD"
+    },
+    "miles": {
+      "type": "int32",
+      "description": "Miles to credit",
+      "example": 500
+    },
+    "referenceId": {
+      "type": "string",
+      "description": "Partner activity reference number",
+      "example": "RES-123456"
+    }
+  },
+  "required": [
+    "memberId",
+    "partnerId",
+    "activityType",
+    "activityDate",
+    "miles"
+  ]
+}

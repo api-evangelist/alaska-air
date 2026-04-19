@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-flight-status-flight-list-schema.json",
+  "title": "FlightList",
+  "description": "List of flights for a route and date",
+  "type": "object",
+  "properties": {
+    "flights": {
+      "type": "array",
+      "description": "Array of flight summaries",
+      "items": {
+        "$ref": "#/components/schemas/FlightSummary"
+      }
+    },
+    "originAirport": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destinationAirport": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "LAX"
+    },
+    "flightDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Flight date",
+      "example": "2026-04-19"
+    }
+  }
+}

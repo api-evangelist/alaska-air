@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-mileage-plan-transaction-structure.json",
+  "name": "Transaction",
+  "type": "object",
+  "description": "A Mileage Plan mile earn or redeem transaction",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "description": "Unique transaction identifier",
+      "example": "TXN-987654"
+    },
+    "type": {
+      "type": "string",
+      "description": "Transaction type",
+      "enum": [
+        "earn",
+        "redeem"
+      ],
+      "example": "earn"
+    },
+    "miles": {
+      "type": "int32",
+      "description": "Miles earned or redeemed",
+      "example": 2500
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description",
+      "example": "Flight AS123 SEA-LAX"
+    },
+    "date": {
+      "type": "date",
+      "description": "Transaction date",
+      "example": "2026-04-19"
+    },
+    "partner": {
+      "type": "string",
+      "description": "Partner name",
+      "example": "Alaska Airlines"
+    }
+  }
+}

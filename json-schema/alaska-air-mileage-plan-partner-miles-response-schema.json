@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-mileage-plan-partner-miles-response-schema.json",
+  "title": "PartnerMilesResponse",
+  "description": "Response confirming partner miles credit",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "description": "Unique transaction identifier",
+      "example": "TXN-111222"
+    },
+    "memberId": {
+      "type": "string",
+      "description": "Member number",
+      "example": "12345678"
+    },
+    "miles": {
+      "type": "integer",
+      "description": "Miles credited",
+      "example": 500
+    },
+    "newBalance": {
+      "type": "integer",
+      "description": "Updated mile balance",
+      "example": 125500
+    },
+    "status": {
+      "type": "string",
+      "description": "Transaction status",
+      "enum": [
+        "credited",
+        "pending",
+        "rejected"
+      ],
+      "example": "credited"
+    }
+  }
+}

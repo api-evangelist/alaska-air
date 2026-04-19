@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-schedules-schedule-structure.json",
+  "name": "Schedule",
+  "type": "object",
+  "description": "A scheduled flight between two airports",
+  "properties": {
+    "flightNumber": {
+      "type": "string",
+      "description": "Alaska Airlines flight number",
+      "example": "AS123"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Operating carrier code",
+      "enum": [
+        "AS",
+        "QX"
+      ],
+      "example": "AS"
+    },
+    "departureTime": {
+      "type": "string",
+      "description": "Scheduled departure time (HH:MM local)",
+      "example": "08:30"
+    },
+    "arrivalTime": {
+      "type": "string",
+      "description": "Scheduled arrival time (HH:MM local)",
+      "example": "11:05"
+    },
+    "duration": {
+      "type": "int32",
+      "description": "Flight duration in minutes",
+      "example": 155
+    },
+    "aircraft": {
+      "type": "string",
+      "description": "Aircraft type/model",
+      "example": "Boeing 737-900ER"
+    },
+    "operatingDays": {
+      "type": "array",
+      "description": "Days of week this flight operates",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Monday",
+        "Wednesday",
+        "Friday"
+      ]
+    },
+    "stops": {
+      "type": "int32",
+      "description": "Number of intermediate stops",
+      "example": 0
+    },
+    "cabin": {
+      "type": "string",
+      "description": "Available cabin class",
+      "enum": [
+        "First",
+        "Premium Class",
+        "Economy"
+      ],
+      "example": "Economy"
+    }
+  }
+}

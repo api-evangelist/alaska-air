@@ -1,0 +1,7 @@
+{
+  "memberId": "12345678",
+  "transactions": [
+    "example-string"
+  ],
+  "totalCount": 42
+}

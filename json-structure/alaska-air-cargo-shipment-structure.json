@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-cargo-shipment-structure.json",
+  "name": "Shipment",
+  "type": "object",
+  "description": "Confirmed cargo shipment booking",
+  "properties": {
+    "awbNumber": {
+      "type": "string",
+      "description": "Air Waybill number",
+      "example": "027-12345678"
+    },
+    "status": {
+      "type": "string",
+      "description": "Shipment status",
+      "enum": [
+        "Booked",
+        "In Transit",
+        "Delivered",
+        "Cancelled"
+      ],
+      "example": "Booked"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "HNL"
+    },
+    "shipDate": {
+      "type": "date",
+      "description": "Ship date",
+      "example": "2026-04-20"
+    },
+    "estimatedDelivery": {
+      "type": "date",
+      "description": "Estimated delivery date",
+      "example": "2026-04-21"
+    },
+    "totalCharge": {
+      "type": "double",
+      "description": "Total cargo charge in USD",
+      "example": 385.5
+    },
+    "currency": {
+      "type": "string",
+      "description": "Charge currency",
+      "example": "USD"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "memberId": "12345678",
+  "partnerId": "MARRIOTT",
+  "activityType": "hotel_stay",
+  "activityDate": "2026-04-15",
+  "activityAmount": 285.0,
+  "currency": "USD",
+  "miles": 500,
+  "referenceId": "RES-123456"
+}

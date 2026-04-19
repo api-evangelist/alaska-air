@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-flight-schedules-airport-info-schema.json",
+  "title": "AirportInfo",
+  "description": "Airport served by Alaska Airlines",
+  "type": "object",
+  "properties": {
+    "iataCode": {
+      "type": "string",
+      "description": "IATA airport code",
+      "example": "SEA"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full airport name",
+      "example": "Seattle-Tacoma International Airport"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name",
+      "example": "Seattle"
+    },
+    "state": {
+      "type": "string",
+      "description": "US state code",
+      "example": "WA"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO country code",
+      "example": "US"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Airport latitude",
+      "example": 47.4502
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Airport longitude",
+      "example": -122.3088
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Airport timezone",
+      "example": "America/Los_Angeles"
+    }
+  }
+}

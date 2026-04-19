@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-structure/alaska-air-flight-status-airport-structure.json",
+  "name": "Airport",
+  "type": "object",
+  "description": "Airport departure or arrival information",
+  "properties": {
+    "airportCode": {
+      "type": "string",
+      "description": "IATA airport code",
+      "example": "SEA"
+    },
+    "airportName": {
+      "type": "string",
+      "description": "Full airport name",
+      "example": "Seattle-Tacoma International Airport"
+    },
+    "scheduledDeparture": {
+      "type": "datetime",
+      "description": "Scheduled departure time with timezone",
+      "example": "2026-04-19T08:30:00-07:00"
+    },
+    "estimatedDeparture": {
+      "type": "datetime",
+      "description": "Estimated departure time with timezone",
+      "example": "2026-04-19T08:30:00-07:00"
+    },
+    "scheduledArrival": {
+      "type": "datetime",
+      "description": "Scheduled arrival time with timezone",
+      "example": "2026-04-19T11:05:00-07:00"
+    },
+    "estimatedArrival": {
+      "type": "datetime",
+      "description": "Estimated arrival time with timezone",
+      "example": "2026-04-19T11:05:00-07:00"
+    },
+    "gate": {
+      "type": "string",
+      "description": "Gate assignment",
+      "example": "D6"
+    },
+    "terminal": {
+      "type": "string",
+      "description": "Terminal designation",
+      "example": "S"
+    }
+  }
+}

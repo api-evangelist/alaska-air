@@ -1,0 +1,10 @@
+{
+  "awbNumber": "027-12345678",
+  "status": "Booked",
+  "origin": "SEA",
+  "destination": "HNL",
+  "shipDate": "2026-04-20",
+  "estimatedDelivery": "2026-04-21",
+  "totalCharge": 385.5,
+  "currency": "USD"
+}

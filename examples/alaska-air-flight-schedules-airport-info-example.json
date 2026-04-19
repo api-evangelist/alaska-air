@@ -1,0 +1,10 @@
+{
+  "iataCode": "SEA",
+  "name": "Seattle-Tacoma International Airport",
+  "city": "Seattle",
+  "state": "WA",
+  "country": "US",
+  "latitude": 47.4502,
+  "longitude": -122.3088,
+  "timezone": "America/Los_Angeles"
+}

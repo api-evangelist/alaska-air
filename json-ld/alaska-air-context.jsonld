@@ -1,0 +1,375 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "alaska": "https://alaskaair.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Dimensions": "alaska:Dimensions",
+    "RateResponse": "alaska:RateResponse",
+    "ShipmentRequest": "alaska:ShipmentRequest",
+    "Shipment": "alaska:Shipment",
+    "FlightSummary": "alaska:FlightSummary",
+    "FlightStatus": "alaska:FlightStatus",
+    "Member": "alaska:Member",
+    "RateRequest": "alaska:RateRequest",
+    "Aircraft": "alaska:Aircraft",
+    "ScheduleResponse": "alaska:ScheduleResponse",
+    "AirportList": "alaska:AirportList",
+    "ShipmentList": "alaska:ShipmentList",
+    "ShipmentTracking": "alaska:ShipmentTracking",
+    "TransactionList": "alaska:TransactionList",
+    "Schedule": "alaska:Schedule",
+    "PartnerMilesRequest": "alaska:PartnerMilesRequest",
+    "Transaction": "alaska:Transaction",
+    "TrackingEvent": "alaska:TrackingEvent",
+    "AirportInfo": "alaska:AirportInfo",
+    "FlightList": "alaska:FlightList",
+    "Airport": "alaska:Airport",
+    "PartnerMilesResponse": "alaska:PartnerMilesResponse",
+    "activityAmount": {
+      "@id": "alaska:activityAmount",
+      "@type": "xsd:decimal"
+    },
+    "activityDate": {
+      "@id": "alaska:activityDate",
+      "@type": "xsd:date"
+    },
+    "activityType": {
+      "@id": "alaska:activityType",
+      "@type": "xsd:string"
+    },
+    "aircraft": {
+      "@id": "alaska:aircraft",
+      "@type": "xsd:string"
+    },
+    "airportCode": {
+      "@id": "alaska:airportCode",
+      "@type": "xsd:string"
+    },
+    "airportName": {
+      "@id": "alaska:airportName",
+      "@type": "xsd:string"
+    },
+    "airports": {
+      "@id": "alaska:airports",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "arrivalTime": {
+      "@id": "alaska:arrivalTime",
+      "@type": "xsd:string"
+    },
+    "awbNumber": {
+      "@id": "alaska:awbNumber",
+      "@type": "xsd:string"
+    },
+    "cabin": {
+      "@id": "alaska:cabin",
+      "@type": "xsd:string"
+    },
+    "carrier": {
+      "@id": "alaska:carrier",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "alaska:city",
+      "@type": "xsd:string"
+    },
+    "commodity": {
+      "@id": "alaska:commodity",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "alaska:country",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "alaska:currency",
+      "@type": "xsd:string"
+    },
+    "currentLocation": {
+      "@id": "alaska:currentLocation",
+      "@type": "xsd:string"
+    },
+    "date": {
+      "@id": "alaska:date",
+      "@type": "xsd:date"
+    },
+    "delayMinutes": {
+      "@id": "alaska:delayMinutes",
+      "@type": "xsd:integer"
+    },
+    "delayReason": {
+      "@id": "alaska:delayReason",
+      "@type": "xsd:string"
+    },
+    "departureDate": {
+      "@id": "alaska:departureDate",
+      "@type": "xsd:date"
+    },
+    "departureTime": {
+      "@id": "alaska:departureTime",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "destination": {
+      "@id": "alaska:destination",
+      "@type": "xsd:string"
+    },
+    "destinationAirport": {
+      "@id": "alaska:destinationAirport",
+      "@type": "xsd:string"
+    },
+    "dimensions": {
+      "@id": "alaska:dimensions",
+      "@type": "xsd:string"
+    },
+    "duration": {
+      "@id": "alaska:duration",
+      "@type": "xsd:integer"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "estimatedArrival": {
+      "@id": "alaska:estimatedArrival",
+      "@type": "xsd:dateTime"
+    },
+    "estimatedDelivery": {
+      "@id": "alaska:estimatedDelivery",
+      "@type": "xsd:date"
+    },
+    "estimatedDeparture": {
+      "@id": "alaska:estimatedDeparture",
+      "@type": "xsd:dateTime"
+    },
+    "event": {
+      "@id": "alaska:event",
+      "@type": "xsd:string"
+    },
+    "events": {
+      "@id": "alaska:events",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "alaska:firstName",
+      "@type": "xsd:string"
+    },
+    "flightDate": {
+      "@id": "alaska:flightDate",
+      "@type": "xsd:date"
+    },
+    "flightNumber": {
+      "@id": "alaska:flightNumber",
+      "@type": "xsd:string"
+    },
+    "flights": {
+      "@id": "alaska:flights",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "gate": {
+      "@id": "alaska:gate",
+      "@type": "xsd:string"
+    },
+    "height": {
+      "@id": "alaska:height",
+      "@type": "xsd:decimal"
+    },
+    "iataCode": {
+      "@id": "alaska:iataCode",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "alaska:lastName",
+      "@type": "xsd:string"
+    },
+    "latitude": {
+      "@id": "alaska:latitude",
+      "@type": "xsd:decimal"
+    },
+    "length": {
+      "@id": "alaska:length",
+      "@type": "xsd:decimal"
+    },
+    "location": {
+      "@id": "alaska:location",
+      "@type": "xsd:string"
+    },
+    "longitude": {
+      "@id": "alaska:longitude",
+      "@type": "xsd:decimal"
+    },
+    "memberId": {
+      "@id": "alaska:memberId",
+      "@type": "xsd:string"
+    },
+    "memberSince": {
+      "@id": "alaska:memberSince",
+      "@type": "xsd:date"
+    },
+    "mileBalance": {
+      "@id": "alaska:mileBalance",
+      "@type": "xsd:integer"
+    },
+    "miles": {
+      "@id": "alaska:miles",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "newBalance": {
+      "@id": "alaska:newBalance",
+      "@type": "xsd:integer"
+    },
+    "operatingDays": {
+      "@id": "alaska:operatingDays",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "origin": {
+      "@id": "alaska:origin",
+      "@type": "xsd:string"
+    },
+    "originAirport": {
+      "@id": "alaska:originAirport",
+      "@type": "xsd:string"
+    },
+    "partner": {
+      "@id": "alaska:partner",
+      "@type": "xsd:string"
+    },
+    "partnerId": {
+      "@id": "alaska:partnerId",
+      "@type": "xsd:string"
+    },
+    "pieces": {
+      "@id": "alaska:pieces",
+      "@type": "xsd:integer"
+    },
+    "ratePerKg": {
+      "@id": "alaska:ratePerKg",
+      "@type": "xsd:decimal"
+    },
+    "referenceId": {
+      "@id": "alaska:referenceId",
+      "@type": "xsd:string"
+    },
+    "scheduledArrival": {
+      "@id": "alaska:scheduledArrival",
+      "@type": "xsd:dateTime"
+    },
+    "scheduledDeparture": {
+      "@id": "alaska:scheduledDeparture",
+      "@type": "xsd:dateTime"
+    },
+    "schedules": {
+      "@id": "alaska:schedules",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "serviceType": {
+      "@id": "alaska:serviceType",
+      "@type": "xsd:string"
+    },
+    "shipDate": {
+      "@id": "alaska:shipDate",
+      "@type": "xsd:date"
+    },
+    "shipments": {
+      "@id": "alaska:shipments",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "specialHandling": {
+      "@id": "alaska:specialHandling",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "alaska:state",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "alaska:status",
+      "@type": "xsd:string"
+    },
+    "stops": {
+      "@id": "alaska:stops",
+      "@type": "xsd:integer"
+    },
+    "tailNumber": {
+      "@id": "alaska:tailNumber",
+      "@type": "xsd:string"
+    },
+    "terminal": {
+      "@id": "alaska:terminal",
+      "@type": "xsd:string"
+    },
+    "tier": {
+      "@id": "alaska:tier",
+      "@type": "xsd:string"
+    },
+    "tierMiles": {
+      "@id": "alaska:tierMiles",
+      "@type": "xsd:integer"
+    },
+    "timestamp": {
+      "@id": "alaska:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "timezone": {
+      "@id": "alaska:timezone",
+      "@type": "xsd:string"
+    },
+    "totalCharge": {
+      "@id": "alaska:totalCharge",
+      "@type": "xsd:decimal"
+    },
+    "totalCount": {
+      "@id": "alaska:totalCount",
+      "@type": "xsd:integer"
+    },
+    "transactionId": {
+      "@id": "alaska:transactionId",
+      "@type": "xsd:string"
+    },
+    "transactions": {
+      "@id": "alaska:transactions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "transitDays": {
+      "@id": "alaska:transitDays",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "alaska:type",
+      "@type": "xsd:string"
+    },
+    "unit": {
+      "@id": "alaska:unit",
+      "@type": "xsd:string"
+    },
+    "weight": {
+      "@id": "alaska:weight",
+      "@type": "xsd:decimal"
+    },
+    "weightUnit": {
+      "@id": "alaska:weightUnit",
+      "@type": "xsd:string"
+    },
+    "width": {
+      "@id": "alaska:width",
+      "@type": "xsd:decimal"
+    }
+  }
+}

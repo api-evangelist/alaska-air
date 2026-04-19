@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-cargo-rate-response-schema.json",
+  "title": "RateResponse",
+  "description": "Cargo rate estimate response",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "Origin airport IATA code",
+      "example": "SEA"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination airport IATA code",
+      "example": "HNL"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Ship date",
+      "example": "2026-04-20"
+    },
+    "totalCharge": {
+      "type": "number",
+      "description": "Estimated total charge",
+      "example": 385.5
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code",
+      "example": "USD"
+    },
+    "ratePerKg": {
+      "type": "number",
+      "description": "Rate per kilogram",
+      "example": 8.47
+    },
+    "transitDays": {
+      "type": "integer",
+      "description": "Estimated transit days",
+      "example": 1
+    },
+    "serviceType": {
+      "type": "string",
+      "description": "Service type",
+      "example": "Standard"
+    }
+  }
+}

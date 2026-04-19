@@ -1,0 +1,8 @@
+{
+  "origin": "SEA",
+  "destination": "LAX",
+  "departureDate": "2026-04-19",
+  "schedules": [
+    "example-string"
+  ]
+}

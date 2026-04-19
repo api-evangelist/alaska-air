@@ -1,0 +1,8 @@
+{
+  "flights": [
+    "example-string"
+  ],
+  "originAirport": "SEA",
+  "destinationAirport": "LAX",
+  "flightDate": "2026-04-19"
+}

@@ -1,0 +1,11 @@
+{
+  "awbNumber": "027-12345678",
+  "status": "In Transit",
+  "origin": "SEA",
+  "destination": "HNL",
+  "currentLocation": "SEA",
+  "estimatedDelivery": "2026-04-21",
+  "events": [
+    "example-string"
+  ]
+}

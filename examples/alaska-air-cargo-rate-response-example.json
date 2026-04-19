@@ -1,0 +1,10 @@
+{
+  "origin": "SEA",
+  "destination": "HNL",
+  "shipDate": "2026-04-20",
+  "totalCharge": 385.5,
+  "currency": "USD",
+  "ratePerKg": 8.47,
+  "transitDays": 1,
+  "serviceType": "Standard"
+}

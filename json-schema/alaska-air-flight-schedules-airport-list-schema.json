@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alaska-air/refs/heads/main/json-schema/alaska-air-flight-schedules-airport-list-schema.json",
+  "title": "AirportList",
+  "description": "List of Alaska Airlines served airports",
+  "type": "object",
+  "properties": {
+    "airports": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AirportInfo"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total airport count",
+      "example": 115
+    }
+  }
+}
