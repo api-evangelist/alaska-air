@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,10 +9,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Alaska Airlines
 providerId: alaska-air
-publisherName: Alaska Airlines
-serviceCategory: API
+publisherName: Alaska Airlines, Inc.
+serviceCategory: Travel & Transportation
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Airlines
   - Aviation
@@ -20,140 +22,58 @@ tags:
   - Loyalty
   - Flight Status
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Alaska Airlines API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps shell for Alaska Airlines APIs: no public commercial surface - cost
+  is determined by partner / GDS / NDC / cargo / loyalty contracts. Reconcile against the specific commercial
+  agreement covering each integration.'
+sources:
+  - https://www.alaskaair.com
+  - https://www.alaskacargo.com
+  - https://focus.finops.org/focus-specification/v1-3/
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Alaska Airlines
-  ServiceCategory: Developer Tools / API
+  ServiceName: Alaska Airlines APIs
+  ServiceCategory: Travel & Transportation
   ProviderName: Alaska Airlines
-  PublisherName: Alaska Airlines
-  InvoiceIssuerName: Alaska Airlines
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Alaska Airlines, Inc.
+  InvoiceIssuerName: Alaska Airlines, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-  - name: api_requests
-    description: Count of billable API requests
+  - name: partner_contract
+    description: Annual partner agreement value for API channel access
+    unit: contract-year
+    aggregation: sum
+    dimensions:
+      - channel
+      - product
+  - name: api_calls
+    description: API call volume across distribution / cargo / loyalty endpoints (where contractually
+      metered)
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Alaska Airlines Flight Status API
-    baseURL: https://api.alaskaair.com
-    tags:
-      - Flight Status
-      - Aviation
-      - Real-Time Data
-    serviceName: Alaska Airlines Flight Status API
-    serviceCategory: API
-  - name: Alaska Airlines Flight Schedules API
-    baseURL: https://api.alaskaair.com
-    tags:
-      - Schedules
-      - Aviation
-      - Itinerary
-    serviceName: Alaska Airlines Flight Schedules API
-    serviceCategory: API
-  - name: Alaska Air Cargo API
-    baseURL: https://api.alaskacargo.com
-    tags:
-      - Cargo
-      - Freight
-      - Shipping
-      - Tracking
-    serviceName: Alaska Air Cargo API
-    serviceCategory: API
-  - name: Alaska Airlines Mileage Plan API
-    baseURL: https://api.alaskaair.com
-    tags:
-      - Loyalty
-      - Mileage Plan
-      - Rewards
-      - Partners
-    serviceName: Alaska Airlines Mileage Plan API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - channel
+principles:
+  - name: Visibility
+    description: Track Alaska partner-channel costs through the partner-management billing relationship;
+      no public usage telemetry is available.
+  - name: Allocation
+    description: Allocate channel contract costs to the consuming product line (corporate booking, GDS
+      distribution, cargo, loyalty integration).
+  - name: Optimization
+    description: Right-size partner integrations during annual renewals; deprecate unused channels; consolidate
+      where possible.
+  - name: Accountability
+    description: Owned by the partner-integration / distribution leads on the consuming side; reviewed
+      against fare / cargo revenue contribution.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Alaska Airlines
 providerId: alaska-air
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Airlines
   - Aviation
@@ -13,93 +14,27 @@ tags:
   - Loyalty
   - Flight Status
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Alaska Airlines API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Alaska Airlines APIs are not publicly published; rate-limit behavior is therefore defined
+  inside each partner agreement (GDS, NDC, cargo, loyalty). No public throttling documentation exists.
+sources:
+  - https://www.alaskaair.com
+  - https://www.alaskacargo.com
+notes: No public rate-limit documentation. Reconcile against the partner-specific contractual rate-limit
+  schedule when known.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Alaska Airlines Flight Status API
-      - Alaska Airlines Flight Schedules API
-      - Alaska Air Cargo API
-      - Alaska Airlines Mileage Plan API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Alaska Airlines Flight Status API
-      - Alaska Airlines Flight Schedules API
-      - Alaska Air Cargo API
-      - Alaska Airlines Mileage Plan API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Alaska Airlines Flight Status API
-      - Alaska Airlines Flight Schedules API
-      - Alaska Air Cargo API
-      - Alaska Airlines Mileage Plan API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Alaska Airlines Flight Status API
-      - Alaska Airlines Flight Schedules API
-      - Alaska Air Cargo API
-      - Alaska Airlines Mileage Plan API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
+  - name: Partner-Negotiated Throughput
     scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Alaska Airlines Flight Status API
-      - Alaska Airlines Flight Schedules API
-      - Alaska Air Cargo API
-      - Alaska Airlines Mileage Plan API
+    metric: varies
+    limit: per-contract; not publicly documented
 policies:
+  - name: Contractual Limits
+    description: Throughput is dimensioned per partner agreement and managed by Alaska's distribution and
+      cargo teams.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Clients should implement exponential backoff with jitter and honor any Retry-After header
+      returned.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
