@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alaska Airlines Mileage Plan API — Partner Miles
+  description: 'Alaska Airlines Mileage Plan API — Partner Miles. 1 operations. Lead operation: Alaska Airlines Report Partner
+    Miles. Self-contained Naftiko capability covering one Alaska Air business surface.'
+  tags:
+  - Alaska Air
+  - Partner Miles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALASKA_AIR_API_KEY: ALASKA_AIR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mileage-plan-partner-miles
+    baseUri: https://api.alaskaair.com/loyalty/v1
+    description: Alaska Airlines Mileage Plan API — Partner Miles business capability. Self-contained, no shared references.
+    resources:
+    - name: partners-miles
+      path: /partners/miles
+      operations:
+      - name: reportpartnermiles
+        method: POST
+        description: Alaska Airlines Report Partner Miles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ALASKA_AIR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mileage-plan-partner-miles-rest
+    port: 8080
+    description: REST adapter for Alaska Airlines Mileage Plan API — Partner Miles. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/partners/miles
+      name: partners-miles
+      description: REST surface for partners-miles.
+      operations:
+      - method: POST
+        name: reportpartnermiles
+        description: Alaska Airlines Report Partner Miles
+        call: mileage-plan-partner-miles.reportpartnermiles
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mileage-plan-partner-miles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alaska Airlines Mileage Plan API — Partner Miles. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: alaska-airlines-report-partner-miles
+      description: Alaska Airlines Report Partner Miles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mileage-plan-partner-miles.reportpartnermiles
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

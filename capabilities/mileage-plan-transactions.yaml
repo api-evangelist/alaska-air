@@ -1,0 +1,98 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alaska Airlines Mileage Plan API — Transactions
+  description: 'Alaska Airlines Mileage Plan API — Transactions. 1 operations. Lead operation: Alaska Airlines Get Mileage
+    Plan Transactions. Self-contained Naftiko capability covering one Alaska Air business surface.'
+  tags:
+  - Alaska Air
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALASKA_AIR_API_KEY: ALASKA_AIR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mileage-plan-transactions
+    baseUri: https://api.alaskaair.com/loyalty/v1
+    description: Alaska Airlines Mileage Plan API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: members-memberId-transactions
+      path: /members/{memberId}/transactions
+      operations:
+      - name: getmembertransactions
+        method: GET
+        description: Alaska Airlines Get Mileage Plan Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: memberId
+          in: path
+          type: string
+          description: Mileage Plan member number
+          required: true
+        - name: fromDate
+          in: query
+          type: string
+          description: Start date filter (YYYY-MM-DD)
+        - name: toDate
+          in: query
+          type: string
+          description: End date filter (YYYY-MM-DD)
+        - name: type
+          in: query
+          type: string
+          description: Transaction type filter
+    authentication:
+      type: bearer
+      token: '{{env.ALASKA_AIR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mileage-plan-transactions-rest
+    port: 8080
+    description: REST adapter for Alaska Airlines Mileage Plan API — Transactions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/members/{memberid}/transactions
+      name: members-memberid-transactions
+      description: REST surface for members-memberId-transactions.
+      operations:
+      - method: GET
+        name: getmembertransactions
+        description: Alaska Airlines Get Mileage Plan Transactions
+        call: mileage-plan-transactions.getmembertransactions
+        with:
+          memberId: rest.memberId
+          fromDate: rest.fromDate
+          toDate: rest.toDate
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mileage-plan-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alaska Airlines Mileage Plan API — Transactions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: alaska-airlines-get-mileage-plan
+      description: Alaska Airlines Get Mileage Plan Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mileage-plan-transactions.getmembertransactions
+      with:
+        memberId: tools.memberId
+        fromDate: tools.fromDate
+        toDate: tools.toDate
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

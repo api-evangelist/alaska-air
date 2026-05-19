@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alaska Air Cargo API — Rates
+  description: 'Alaska Air Cargo API — Rates. 1 operations. Lead operation: Alaska Air Cargo Get Rate Estimate. Self-contained
+    Naftiko capability covering one Alaska Air business surface.'
+  tags:
+  - Alaska Air
+  - Rates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALASKA_AIR_API_KEY: ALASKA_AIR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cargo-rates
+    baseUri: https://api.alaskacargo.com/v1
+    description: Alaska Air Cargo API — Rates business capability. Self-contained, no shared references.
+    resources:
+    - name: rates
+      path: /rates
+      operations:
+      - name: getrateestimate
+        method: POST
+        description: Alaska Air Cargo Get Rate Estimate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Ocp-Apim-Subscription-Key
+      value: '{{env.ALASKA_AIR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: cargo-rates-rest
+    port: 8080
+    description: REST adapter for Alaska Air Cargo API — Rates. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/rates
+      name: rates
+      description: REST surface for rates.
+      operations:
+      - method: POST
+        name: getrateestimate
+        description: Alaska Air Cargo Get Rate Estimate
+        call: cargo-rates.getrateestimate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cargo-rates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alaska Air Cargo API — Rates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: alaska-air-cargo-get-rate
+      description: Alaska Air Cargo Get Rate Estimate
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: cargo-rates.getrateestimate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

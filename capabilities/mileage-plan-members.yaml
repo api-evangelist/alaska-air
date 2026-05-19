@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alaska Airlines Mileage Plan API — Members
+  description: 'Alaska Airlines Mileage Plan API — Members. 1 operations. Lead operation: Alaska Airlines Get Mileage Plan
+    Member. Self-contained Naftiko capability covering one Alaska Air business surface.'
+  tags:
+  - Alaska Air
+  - Members
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALASKA_AIR_API_KEY: ALASKA_AIR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mileage-plan-members
+    baseUri: https://api.alaskaair.com/loyalty/v1
+    description: Alaska Airlines Mileage Plan API — Members business capability. Self-contained, no shared references.
+    resources:
+    - name: members-memberId
+      path: /members/{memberId}
+      operations:
+      - name: getmember
+        method: GET
+        description: Alaska Airlines Get Mileage Plan Member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: memberId
+          in: path
+          type: string
+          description: Alaska Airlines Mileage Plan member number
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ALASKA_AIR_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mileage-plan-members-rest
+    port: 8080
+    description: REST adapter for Alaska Airlines Mileage Plan API — Members. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/members/{memberid}
+      name: members-memberid
+      description: REST surface for members-memberId.
+      operations:
+      - method: GET
+        name: getmember
+        description: Alaska Airlines Get Mileage Plan Member
+        call: mileage-plan-members.getmember
+        with:
+          memberId: rest.memberId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mileage-plan-members-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alaska Airlines Mileage Plan API — Members. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: alaska-airlines-get-mileage-plan
+      description: Alaska Airlines Get Mileage Plan Member
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mileage-plan-members.getmember
+      with:
+        memberId: tools.memberId
+      outputParameters:
+      - type: object
+        mapping: $.
