@@ -10,7 +10,7 @@ tags:
   - Flight Status
   - Fortune 500
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 description: Alaska Air Group is the parent company of Alaska Airlines and Horizon Air, providing passenger and cargo air
   transportation throughout the United States, Mexico, Canada, Costa Rica, and Belize. Alaska Airlines offers a developer
   portal at developers.alaskaair.com for accessing flight status, schedules, and other APIs, and operates Alaska Air Cargo
