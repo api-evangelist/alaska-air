@@ -32,7 +32,7 @@ apis:
       type: APIReference
     - url: openapi/alaska-air-flight-status-openapi.yaml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/flight-status-flight-status.yaml
     humanURL: https://developers.alaskaair.com/
     baseURL: https://api.alaskaair.com
@@ -49,9 +49,9 @@ apis:
       type: Documentation
     - url: openapi/alaska-air-flight-schedules-openapi.yaml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/flight-schedules-airports.yaml
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/flight-schedules-schedules.yaml
     humanURL: https://developers.alaskaair.com/
     baseURL: https://api.alaskaair.com
@@ -71,9 +71,9 @@ apis:
       type: Portal
     - url: openapi/alaska-air-cargo-openapi.yaml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/cargo-rates.yaml
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/cargo-shipments.yaml
     humanURL: https://www.alaskacargo.com/
     baseURL: https://api.alaskacargo.com
@@ -92,11 +92,11 @@ apis:
       type: Documentation
     - url: openapi/alaska-air-mileage-plan-openapi.yaml
       type: OpenAPI
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/mileage-plan-members.yaml
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/mileage-plan-partner-miles.yaml
-    - type: NaftikoCapability
+    - type: X-NaftikoCapability
       url: capabilities/mileage-plan-transactions.yaml
     humanURL: https://www.alaskaair.com/content/mileage-plan
     baseURL: https://api.alaskaair.com
