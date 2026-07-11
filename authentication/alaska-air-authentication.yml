@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/alaska-air-cargo-openapi.yaml, openapi/alaska-air-flight-schedules-openapi.yaml,
+  openapi/alaska-air-flight-status-openapi.yaml, openapi/alaska-air-mileage-plan-openapi.yaml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: Ocp-Apim-Subscription-Key
+  description: API subscription key for Alaska Air Cargo
+  sources:
+  - openapi/alaska-air-cargo-openapi.yaml
+  - openapi/alaska-air-flight-schedules-openapi.yaml
+  - openapi/alaska-air-flight-status-openapi.yaml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.alaskaair.com/oauth/token
+    scopes: 2
+  description: OAuth 2.0 for Mileage Plan partner API access
+  sources:
+  - openapi/alaska-air-mileage-plan-openapi.yaml

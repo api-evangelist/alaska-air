@@ -104,6 +104,10 @@ apis:
       loyalty partners to report and redeem miles for members. Alaska's Mileage Plan is consistently rated among the top frequent
       flyer programs.
 common:
+  - type: DomainSecurity
+    url: security/alaska-air-domain-security.yml
+  - type: Authentication
+    url: authentication/alaska-air-authentication.yml
   - type: OAuthScopes
     url: scopes/alaska-air-scopes.yml
   - type: GitHubOrganization
