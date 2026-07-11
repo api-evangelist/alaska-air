@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/alaska-air-mileage-plan-openapi.yaml
+schemes:
+- name: OAuth2
+  source: openapi/alaska-air-mileage-plan-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.alaskaair.com/oauth/token
+  description: OAuth 2.0 for Mileage Plan partner API access
+scopes:
+- scope: loyalty:read
+  description: Read member data
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/alaska-air-mileage-plan-openapi.yaml
+- scope: loyalty:write
+  description: Report and manage miles
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/alaska-air-mileage-plan-openapi.yaml
