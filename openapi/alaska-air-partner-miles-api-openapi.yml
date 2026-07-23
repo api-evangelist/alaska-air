@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports Partner Miles API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Partner Miles
+  description: Partner mile reporting for hotel, car rental, and retail activities
+paths:
+  /partners/miles:
+    post:
+      operationId: reportPartnerMiles
+      summary: Alaska Airlines Report Partner Miles
+      description: Report miles earned by a Mileage Plan member through a partner activity such as a hotel stay, car rental, or retail purchase.
+      tags:
+      - Partner Miles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerMilesRequest'
+            examples:
+              reportPartnerMilesRequestExample:
+                summary: Default reportPartnerMiles request
+                x-microcks-default: true
+                value:
+                  memberId: '12345678'
+                  partnerId: MARRIOTT
+                  activityType: hotel_stay
+                  activityDate: '2026-04-15'
+                  activityAmount: 285.0
+                  currency: USD
+                  miles: 500
+                  referenceId: RES-123456
+      responses:
+        '201':
+          description: Partner miles reported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerMilesResponse'
+              examples:
+                reportPartnerMiles201Example:
+                  summary: Default reportPartnerMiles 201 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: TXN-111222
+                    memberId: '12345678'
+                    miles: 500
+                    newBalance: 125500
+                    status: credited
+        '400':
+          description: Invalid request
+        '404':
+          description: Member not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PartnerMilesRequest:
+      title: PartnerMilesRequest
+      type: object
+      description: Request to report partner miles for a Mileage Plan member
+      required:
+      - memberId
+      - partnerId
+      - activityType
+      - activityDate
+      - miles
+      properties:
+        memberId:
+          type: string
+          description: Mileage Plan member number
+          example: '12345678'
+        partnerId:
+          type: string
+          description: Registered partner identifier
+          example: MARRIOTT
+        activityType:
+          type: string
+          description: Type of partner activity
+          enum:
+          - hotel_stay
+          - car_rental
+          - retail
+          - flight
+          - dining
+          example: hotel_stay
+        activityDate:
+          type: string
+          format: date
+          description: Date of partner activity
+          example: '2026-04-15'
+        activityAmount:
+          type: number
+          description: Transaction amount in partner currency
+          example: 285.0
+        currency:
+          type: string
+          description: Currency code
+          example: USD
+        miles:
+          type: integer
+          description: Miles to credit
+          example: 500
+        referenceId:
+          type: string
+          description: Partner activity reference number
+          example: RES-123456
+    PartnerMilesResponse:
+      title: PartnerMilesResponse
+      type: object
+      description: Response confirming partner miles credit
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier
+          example: TXN-111222
+        memberId:
+          type: string
+          description: Member number
+          example: '12345678'
+        miles:
+          type: integer
+          description: Miles credited
+          example: 500
+        newBalance:
+          type: integer
+          description: Updated mile balance
+          example: 125500
+        status:
+          type: string
+          description: Transaction status
+          enum:
+          - credited
+          - pending
+          - rejected
+          example: credited
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo

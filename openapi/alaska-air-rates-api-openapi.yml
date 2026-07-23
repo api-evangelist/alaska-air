@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports Rates API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Rates
+  description: Cargo rate estimation
+paths:
+  /rates:
+    post:
+      operationId: getRateEstimate
+      summary: Alaska Air Cargo Get Rate Estimate
+      description: Get a rate estimate for a cargo shipment based on origin, destination, weight, dimensions, and special handling requirements.
+      tags:
+      - Rates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+            examples:
+              getRateEstimateRequestExample:
+                summary: Default getRateEstimate request
+                x-microcks-default: true
+                value:
+                  origin: SEA
+                  destination: HNL
+                  shipDate: '2026-04-20'
+                  weight: 45.5
+                  weightUnit: KG
+                  pieces: 3
+      responses:
+        '200':
+          description: Rate estimate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateResponse'
+              examples:
+                getRateEstimate200Example:
+                  summary: Default getRateEstimate 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: SEA
+                    destination: HNL
+                    shipDate: '2026-04-20'
+                    totalCharge: 385.5
+                    currency: USD
+                    ratePerKg: 8.47
+                    transitDays: 1
+                    serviceType: Standard
+        '400':
+          description: Invalid request
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RateResponse:
+      title: RateResponse
+      type: object
+      description: Cargo rate estimate response
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        totalCharge:
+          type: number
+          description: Estimated total charge
+          example: 385.5
+        currency:
+          type: string
+          description: Currency code
+          example: USD
+        ratePerKg:
+          type: number
+          description: Rate per kilogram
+          example: 8.47
+        transitDays:
+          type: integer
+          description: Estimated transit days
+          example: 1
+        serviceType:
+          type: string
+          description: Service type
+          example: Standard
+    RateRequest:
+      title: RateRequest
+      type: object
+      description: Request for cargo rate estimate
+      required:
+      - origin
+      - destination
+      - shipDate
+      - weight
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Desired ship date
+          example: '2026-04-20'
+        weight:
+          type: number
+          description: Shipment weight
+          example: 45.5
+        weightUnit:
+          type: string
+          description: Weight unit
+          enum:
+          - KG
+          - LB
+          example: KG
+        pieces:
+          type: integer
+          description: Number of pieces
+          example: 3
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo

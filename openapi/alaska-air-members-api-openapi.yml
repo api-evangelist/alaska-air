@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports Members API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Members
+  description: Mileage Plan member data and tier information
+paths:
+  /members/{memberId}:
+    get:
+      operationId: getMember
+      summary: Alaska Airlines Get Mileage Plan Member
+      description: Retrieve Mileage Plan member information including tier status, balance, and account details for a specific member ID.
+      tags:
+      - Members
+      parameters:
+      - name: memberId
+        in: path
+        required: true
+        description: Alaska Airlines Mileage Plan member number
+        schema:
+          type: string
+          example: '12345678'
+      responses:
+        '200':
+          description: Mileage Plan member information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                getMember200Example:
+                  summary: Default getMember 200 response
+                  x-microcks-default: true
+                  value:
+                    memberId: '12345678'
+                    firstName: Jane
+                    lastName: Smith
+                    email: jsmith@example.com
+                    tier: MVP Gold 75K
+                    mileBalance: 125000
+                    tierMiles: 78500
+                    memberSince: '2018-03-15'
+        '404':
+          description: Member not found
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Member:
+      title: Member
+      type: object
+      description: Alaska Airlines Mileage Plan member
+      properties:
+        memberId:
+          type: string
+          description: Mileage Plan member number
+          example: '12345678'
+        firstName:
+          type: string
+          description: Member first name
+          example: Jane
+        lastName:
+          type: string
+          description: Member last name
+          example: Smith
+        email:
+          type: string
+          format: email
+          description: Member email address
+          example: jsmith@example.com
+        tier:
+          type: string
+          description: Current MVP tier status
+          enum:
+          - Member
+          - MVP
+          - MVP Gold
+          - MVP Gold 75K
+          example: MVP Gold 75K
+        mileBalance:
+          type: integer
+          description: Current available mile balance
+          example: 125000
+        tierMiles:
+          type: integer
+          description: Miles earned toward tier qualification
+          example: 78500
+        memberSince:
+          type: string
+          format: date
+          description: Membership start date
+          example: '2018-03-15'
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo

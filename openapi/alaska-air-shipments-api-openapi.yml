@@ -1,0 +1,378 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports Shipments API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Shipments
+  description: Cargo shipment booking and tracking operations
+paths:
+  /shipments:
+    post:
+      operationId: createShipment
+      summary: Alaska Air Cargo Create Shipment
+      description: Book a new cargo shipment with Alaska Air Cargo. Provide origin, destination, commodity details, weight, dimensions, and special handling requirements to create a booking.
+      tags:
+      - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRequest'
+            examples:
+              createShipmentRequestExample:
+                summary: Default createShipment request
+                x-microcks-default: true
+                value:
+                  origin: SEA
+                  destination: HNL
+                  shipDate: '2026-04-20'
+                  commodity: Electronics
+                  weight: 45.5
+                  weightUnit: KG
+                  pieces: 3
+                  dimensions:
+                    length: 60
+                    width: 40
+                    height: 30
+                    unit: CM
+      responses:
+        '201':
+          description: Shipment booking confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+              examples:
+                createShipment201Example:
+                  summary: Default createShipment 201 response
+                  x-microcks-default: true
+                  value:
+                    awbNumber: 027-12345678
+                    status: Booked
+                    origin: SEA
+                    destination: HNL
+                    shipDate: '2026-04-20'
+                    estimatedDelivery: '2026-04-21'
+                    totalCharge: 385.5
+                    currency: USD
+        '400':
+          description: Invalid shipment request
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      operationId: listShipments
+      summary: Alaska Air Cargo List Shipments
+      description: Retrieve a list of cargo shipments for the authenticated account, optionally filtered by date range or status.
+      tags:
+      - Shipments
+      parameters:
+      - name: fromDate
+        in: query
+        description: Start date filter (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+          example: '2026-04-01'
+      - name: toDate
+        in: query
+        description: End date filter (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+          example: '2026-04-19'
+      - name: status
+        in: query
+        description: Filter by shipment status
+        schema:
+          type: string
+          enum:
+          - Booked
+          - In Transit
+          - Delivered
+          - Cancelled
+      responses:
+        '200':
+          description: List of shipments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentList'
+              examples:
+                listShipments200Example:
+                  summary: Default listShipments 200 response
+                  x-microcks-default: true
+                  value:
+                    shipments:
+                    - awbNumber: 027-12345678
+                      origin: SEA
+                      destination: HNL
+                      status: In Transit
+                      shipDate: '2026-04-20'
+                    totalCount: 1
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /shipments/{awbNumber}:
+    get:
+      operationId: getShipment
+      summary: Alaska Air Cargo Get Shipment
+      description: Retrieve tracking details and current status for a specific cargo shipment by Air Waybill (AWB) number.
+      tags:
+      - Shipments
+      parameters:
+      - name: awbNumber
+        in: path
+        required: true
+        description: Air Waybill number (e.g., 027-12345678)
+        schema:
+          type: string
+          example: 027-12345678
+      responses:
+        '200':
+          description: Shipment tracking details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentTracking'
+              examples:
+                getShipment200Example:
+                  summary: Default getShipment 200 response
+                  x-microcks-default: true
+                  value:
+                    awbNumber: 027-12345678
+                    status: In Transit
+                    origin: SEA
+                    destination: HNL
+                    currentLocation: SEA
+                    estimatedDelivery: '2026-04-21'
+                    events:
+                    - timestamp: '2026-04-20T10:30:00-07:00'
+                      location: SEA
+                      event: Accepted
+                      description: Shipment accepted at Seattle
+                    - timestamp: '2026-04-20T18:45:00-07:00'
+                      location: SEA
+                      event: Departed
+                      description: Departed Seattle on AS847
+        '404':
+          description: Shipment not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Dimensions:
+      title: Dimensions
+      type: object
+      description: Package dimensions
+      properties:
+        length:
+          type: number
+          description: Package length
+          example: 60
+        width:
+          type: number
+          description: Package width
+          example: 40
+        height:
+          type: number
+          description: Package height
+          example: 30
+        unit:
+          type: string
+          description: Dimension unit
+          enum:
+          - CM
+          - IN
+          example: CM
+    ShipmentList:
+      title: ShipmentList
+      type: object
+      description: List of cargo shipments
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        totalCount:
+          type: integer
+          description: Total shipment count
+          example: 42
+    Shipment:
+      title: Shipment
+      type: object
+      description: Confirmed cargo shipment booking
+      properties:
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Shipment status
+          enum:
+          - Booked
+          - In Transit
+          - Delivered
+          - Cancelled
+          example: Booked
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        totalCharge:
+          type: number
+          description: Total cargo charge in USD
+          example: 385.5
+        currency:
+          type: string
+          description: Charge currency
+          example: USD
+    ShipmentRequest:
+      title: ShipmentRequest
+      type: object
+      description: Request body for creating a cargo shipment booking
+      required:
+      - origin
+      - destination
+      - shipDate
+      - weight
+      - pieces
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Desired ship date (YYYY-MM-DD)
+          example: '2026-04-20'
+        commodity:
+          type: string
+          description: Commodity description
+          example: Electronics
+        weight:
+          type: number
+          description: Total shipment weight
+          example: 45.5
+        weightUnit:
+          type: string
+          description: Weight unit
+          enum:
+          - KG
+          - LB
+          example: KG
+        pieces:
+          type: integer
+          description: Number of pieces in shipment
+          example: 3
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        specialHandling:
+          type: array
+          description: Special handling requirements
+          items:
+            type: string
+          example:
+          - Fragile
+    ShipmentTracking:
+      title: ShipmentTracking
+      type: object
+      description: Shipment tracking details with event history
+      properties:
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Current status
+          example: In Transit
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        currentLocation:
+          type: string
+          description: Current location IATA code
+          example: SEA
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        events:
+          type: array
+          description: Tracking event history
+          items:
+            $ref: '#/components/schemas/TrackingEvent'
+    TrackingEvent:
+      title: TrackingEvent
+      type: object
+      description: A cargo tracking event
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+          example: '2026-04-20T10:30:00-07:00'
+        location:
+          type: string
+          description: Location IATA code
+          example: SEA
+        event:
+          type: string
+          description: Event type
+          example: Accepted
+        description:
+          type: string
+          description: Event description
+          example: Shipment accepted at Seattle
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo

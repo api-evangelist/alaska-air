@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Airports
+  description: Airport information for Alaska Airlines served destinations
+paths:
+  /airports:
+    get:
+      operationId: listAirports
+      summary: Alaska Airlines List Airports
+      description: Retrieve a list of airports served by Alaska Airlines and Horizon Air with IATA codes, names, cities, and geographic coordinates.
+      tags:
+      - Airports
+      parameters:
+      - name: country
+        in: query
+        description: Filter airports by ISO country code
+        schema:
+          type: string
+          example: US
+      - name: state
+        in: query
+        description: Filter airports by US state code
+        schema:
+          type: string
+          example: WA
+      responses:
+        '200':
+          description: List of airports served by Alaska Airlines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportList'
+              examples:
+                listAirports200Example:
+                  summary: Default listAirports 200 response
+                  x-microcks-default: true
+                  value:
+                    airports:
+                    - iataCode: SEA
+                      name: Seattle-Tacoma International Airport
+                      city: Seattle
+                      state: WA
+                      country: US
+                      latitude: 47.4502
+                      longitude: -122.3088
+                    - iataCode: LAX
+                      name: Los Angeles International Airport
+                      city: Los Angeles
+                      state: CA
+                      country: US
+                      latitude: 33.9425
+                      longitude: -118.4081
+                    totalCount: 2
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AirportInfo:
+      title: AirportInfo
+      type: object
+      description: Airport served by Alaska Airlines
+      properties:
+        iataCode:
+          type: string
+          description: IATA airport code
+          example: SEA
+        name:
+          type: string
+          description: Full airport name
+          example: Seattle-Tacoma International Airport
+        city:
+          type: string
+          description: City name
+          example: Seattle
+        state:
+          type: string
+          description: US state code
+          example: WA
+        country:
+          type: string
+          description: ISO country code
+          example: US
+        latitude:
+          type: number
+          description: Airport latitude
+          example: 47.4502
+        longitude:
+          type: number
+          description: Airport longitude
+          example: -122.3088
+        timezone:
+          type: string
+          description: Airport timezone
+          example: America/Los_Angeles
+    AirportList:
+      title: AirportList
+      type: object
+      description: List of Alaska Airlines served airports
+      properties:
+        airports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportInfo'
+        totalCount:
+          type: integer
+          description: Total airport count
+          example: 115
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo

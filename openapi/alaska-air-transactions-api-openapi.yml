@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Alaska Air Cargo Airports Transactions API
+  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  version: 1.0.0
+  contact:
+    name: Alaska Air Cargo
+    url: https://www.alaskacargo.com/
+  license:
+    name: Proprietary
+    url: https://www.alaskacargo.com/
+  x-generated-from: documentation
+servers:
+- url: https://api.alaskacargo.com/v1
+  description: Alaska Air Cargo API server
+security:
+- ApiKeyHeader: []
+tags:
+- name: Transactions
+  description: Mile earn and redemption transaction history
+paths:
+  /members/{memberId}/transactions:
+    get:
+      operationId: getMemberTransactions
+      summary: Alaska Airlines Get Mileage Plan Transactions
+      description: Retrieve mile earning and redemption transaction history for a Mileage Plan member.
+      tags:
+      - Transactions
+      parameters:
+      - name: memberId
+        in: path
+        required: true
+        description: Mileage Plan member number
+        schema:
+          type: string
+          example: '12345678'
+      - name: fromDate
+        in: query
+        description: Start date filter (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+          example: '2026-01-01'
+      - name: toDate
+        in: query
+        description: End date filter (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+          example: '2026-04-19'
+      - name: type
+        in: query
+        description: Transaction type filter
+        schema:
+          type: string
+          enum:
+          - earn
+          - redeem
+      responses:
+        '200':
+          description: Transaction history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+              examples:
+                getMemberTransactions200Example:
+                  summary: Default getMemberTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    memberId: '12345678'
+                    transactions:
+                    - transactionId: TXN-987654
+                      type: earn
+                      miles: 2500
+                      description: Flight AS123 SEA-LAX
+                      date: '2026-04-19'
+                      partner: Alaska Airlines
+        '404':
+          description: Member not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Transaction:
+      title: Transaction
+      type: object
+      description: A Mileage Plan mile earn or redeem transaction
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier
+          example: TXN-987654
+        type:
+          type: string
+          description: Transaction type
+          enum:
+          - earn
+          - redeem
+          example: earn
+        miles:
+          type: integer
+          description: Miles earned or redeemed
+          example: 2500
+        description:
+          type: string
+          description: Transaction description
+          example: Flight AS123 SEA-LAX
+        date:
+          type: string
+          format: date
+          description: Transaction date
+          example: '2026-04-19'
+        partner:
+          type: string
+          description: Partner name
+          example: Alaska Airlines
+    TransactionList:
+      title: TransactionList
+      type: object
+      description: List of Mileage Plan transactions
+      properties:
+        memberId:
+          type: string
+          description: Member number
+          example: '12345678'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+          description: Total transaction count
+          example: 42
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: API subscription key for Alaska Air Cargo
