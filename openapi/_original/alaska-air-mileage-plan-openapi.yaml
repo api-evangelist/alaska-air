@@ -1,0 +1,375 @@
+openapi: 3.0.3
+info:
+  title: Alaska Airlines Mileage Plan API
+  description: >-
+    The Alaska Airlines Mileage Plan partner API enables airline partners,
+    hotel chains, car rental companies, and other loyalty partners to report
+    and redeem miles for members. Alaska's Mileage Plan is consistently rated
+    among the top frequent flyer programs.
+  version: 1.0.0
+  contact:
+    name: Alaska Airlines API Support
+    url: https://developers.alaskaair.com/
+    email: api.support@alaskaair.com
+  license:
+    name: Proprietary
+    url: https://developers.alaskaair.com/
+  x-generated-from: documentation
+servers:
+  - url: https://api.alaskaair.com/loyalty/v1
+    description: Alaska Airlines Mileage Plan API server
+security:
+  - OAuth2: []
+paths:
+  /members/{memberId}:
+    get:
+      operationId: getMember
+      summary: Alaska Airlines Get Mileage Plan Member
+      description: >-
+        Retrieve Mileage Plan member information including tier status,
+        balance, and account details for a specific member ID.
+      tags:
+        - Members
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          description: Alaska Airlines Mileage Plan member number
+          schema:
+            type: string
+            example: "12345678"
+      responses:
+        '200':
+          description: Mileage Plan member information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                getMember200Example:
+                  summary: Default getMember 200 response
+                  x-microcks-default: true
+                  value:
+                    memberId: "12345678"
+                    firstName: Jane
+                    lastName: Smith
+                    email: jsmith@example.com
+                    tier: MVP Gold 75K
+                    mileBalance: 125000
+                    tierMiles: 78500
+                    memberSince: "2018-03-15"
+        '404':
+          description: Member not found
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /members/{memberId}/transactions:
+    get:
+      operationId: getMemberTransactions
+      summary: Alaska Airlines Get Mileage Plan Transactions
+      description: >-
+        Retrieve mile earning and redemption transaction history for a
+        Mileage Plan member.
+      tags:
+        - Transactions
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          description: Mileage Plan member number
+          schema:
+            type: string
+            example: "12345678"
+        - name: fromDate
+          in: query
+          description: Start date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+            example: "2026-01-01"
+        - name: toDate
+          in: query
+          description: End date filter (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+            example: "2026-04-19"
+        - name: type
+          in: query
+          description: Transaction type filter
+          schema:
+            type: string
+            enum:
+              - earn
+              - redeem
+      responses:
+        '200':
+          description: Transaction history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+              examples:
+                getMemberTransactions200Example:
+                  summary: Default getMemberTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    memberId: "12345678"
+                    transactions:
+                      - transactionId: TXN-987654
+                        type: earn
+                        miles: 2500
+                        description: Flight AS123 SEA-LAX
+                        date: "2026-04-19"
+                        partner: Alaska Airlines
+        '404':
+          description: Member not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /partners/miles:
+    post:
+      operationId: reportPartnerMiles
+      summary: Alaska Airlines Report Partner Miles
+      description: >-
+        Report miles earned by a Mileage Plan member through a partner activity
+        such as a hotel stay, car rental, or retail purchase.
+      tags:
+        - Partner Miles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerMilesRequest'
+            examples:
+              reportPartnerMilesRequestExample:
+                summary: Default reportPartnerMiles request
+                x-microcks-default: true
+                value:
+                  memberId: "12345678"
+                  partnerId: MARRIOTT
+                  activityType: hotel_stay
+                  activityDate: "2026-04-15"
+                  activityAmount: 285.00
+                  currency: USD
+                  miles: 500
+                  referenceId: RES-123456
+      responses:
+        '201':
+          description: Partner miles reported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerMilesResponse'
+              examples:
+                reportPartnerMiles201Example:
+                  summary: Default reportPartnerMiles 201 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: TXN-111222
+                    memberId: "12345678"
+                    miles: 500
+                    newBalance: 125500
+                    status: credited
+        '400':
+          description: Invalid request
+        '404':
+          description: Member not found
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 for Mileage Plan partner API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.alaskaair.com/oauth/token
+          scopes:
+            loyalty:read: Read member data
+            loyalty:write: Report and manage miles
+  schemas:
+    Member:
+      title: Member
+      type: object
+      description: Alaska Airlines Mileage Plan member
+      properties:
+        memberId:
+          type: string
+          description: Mileage Plan member number
+          example: "12345678"
+        firstName:
+          type: string
+          description: Member first name
+          example: Jane
+        lastName:
+          type: string
+          description: Member last name
+          example: Smith
+        email:
+          type: string
+          format: email
+          description: Member email address
+          example: jsmith@example.com
+        tier:
+          type: string
+          description: Current MVP tier status
+          enum:
+            - Member
+            - MVP
+            - MVP Gold
+            - MVP Gold 75K
+          example: MVP Gold 75K
+        mileBalance:
+          type: integer
+          description: Current available mile balance
+          example: 125000
+        tierMiles:
+          type: integer
+          description: Miles earned toward tier qualification
+          example: 78500
+        memberSince:
+          type: string
+          format: date
+          description: Membership start date
+          example: "2018-03-15"
+    Transaction:
+      title: Transaction
+      type: object
+      description: A Mileage Plan mile earn or redeem transaction
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier
+          example: TXN-987654
+        type:
+          type: string
+          description: Transaction type
+          enum:
+            - earn
+            - redeem
+          example: earn
+        miles:
+          type: integer
+          description: Miles earned or redeemed
+          example: 2500
+        description:
+          type: string
+          description: Transaction description
+          example: Flight AS123 SEA-LAX
+        date:
+          type: string
+          format: date
+          description: Transaction date
+          example: "2026-04-19"
+        partner:
+          type: string
+          description: Partner name
+          example: Alaska Airlines
+    TransactionList:
+      title: TransactionList
+      type: object
+      description: List of Mileage Plan transactions
+      properties:
+        memberId:
+          type: string
+          description: Member number
+          example: "12345678"
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+          description: Total transaction count
+          example: 42
+    PartnerMilesRequest:
+      title: PartnerMilesRequest
+      type: object
+      description: Request to report partner miles for a Mileage Plan member
+      required:
+        - memberId
+        - partnerId
+        - activityType
+        - activityDate
+        - miles
+      properties:
+        memberId:
+          type: string
+          description: Mileage Plan member number
+          example: "12345678"
+        partnerId:
+          type: string
+          description: Registered partner identifier
+          example: MARRIOTT
+        activityType:
+          type: string
+          description: Type of partner activity
+          enum:
+            - hotel_stay
+            - car_rental
+            - retail
+            - flight
+            - dining
+          example: hotel_stay
+        activityDate:
+          type: string
+          format: date
+          description: Date of partner activity
+          example: "2026-04-15"
+        activityAmount:
+          type: number
+          description: Transaction amount in partner currency
+          example: 285.00
+        currency:
+          type: string
+          description: Currency code
+          example: USD
+        miles:
+          type: integer
+          description: Miles to credit
+          example: 500
+        referenceId:
+          type: string
+          description: Partner activity reference number
+          example: RES-123456
+    PartnerMilesResponse:
+      title: PartnerMilesResponse
+      type: object
+      description: Response confirming partner miles credit
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier
+          example: TXN-111222
+        memberId:
+          type: string
+          description: Member number
+          example: "12345678"
+        miles:
+          type: integer
+          description: Miles credited
+          example: 500
+        newBalance:
+          type: integer
+          description: Updated mile balance
+          example: 125500
+        status:
+          type: string
+          description: Transaction status
+          enum:
+            - credited
+            - pending
+            - rejected
+          example: credited
+tags:
+  - name: Members
+    description: Mileage Plan member data and tier information
+  - name: Transactions
+    description: Mile earn and redemption transaction history
+  - name: Partner Miles
+    description: Partner mile reporting for hotel, car rental, and retail activities

@@ -1,0 +1,28 @@
+{
+  "provider": "alaska-air",
+  "sources": [
+    "alaska-air-airports-api-openapi.yml",
+    "alaska-air-flight-status-api-openapi.yml",
+    "alaska-air-members-api-openapi.yml",
+    "alaska-air-partner-miles-api-openapi.yml",
+    "alaska-air-rates-api-openapi.yml",
+    "alaska-air-schedules-api-openapi.yml",
+    "alaska-air-shipments-api-openapi.yml",
+    "alaska-air-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "alaska-air-airports-api-openapi.yml",
+    "alaska-air-flight-status-api-openapi.yml",
+    "alaska-air-members-api-openapi.yml",
+    "alaska-air-partner-miles-api-openapi.yml",
+    "alaska-air-rates-api-openapi.yml",
+    "alaska-air-schedules-api-openapi.yml",
+    "alaska-air-shipments-api-openapi.yml",
+    "alaska-air-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

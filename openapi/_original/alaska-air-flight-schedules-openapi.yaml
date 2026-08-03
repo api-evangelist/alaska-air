@@ -1,0 +1,300 @@
+openapi: 3.0.3
+info:
+  title: Alaska Airlines Flight Schedules API
+  description: >-
+    The Alaska Airlines Flight Schedules API provides access to flight schedule
+    data including route information, operating days, departure and arrival
+    times, and equipment information across the Alaska Airlines and Horizon Air
+    networks.
+  version: 1.0.0
+  contact:
+    name: Alaska Airlines API Support
+    url: https://developers.alaskaair.com/
+    email: api.support@alaskaair.com
+  license:
+    name: Proprietary
+    url: https://developers.alaskaair.com/
+  x-generated-from: documentation
+servers:
+  - url: https://api.alaskaair.com/v1
+    description: Alaska Airlines API production server
+security:
+  - ApiKeyHeader: []
+paths:
+  /schedules:
+    get:
+      operationId: getSchedules
+      summary: Alaska Airlines Get Flight Schedules
+      description: >-
+        Retrieve scheduled flights for a specific route and date range,
+        including departure/arrival times, operating days, frequency,
+        and aircraft equipment type.
+      tags:
+        - Schedules
+      parameters:
+        - name: origin
+          in: query
+          required: true
+          description: IATA origin airport code
+          schema:
+            type: string
+            example: SEA
+        - name: destination
+          in: query
+          required: true
+          description: IATA destination airport code
+          schema:
+            type: string
+            example: LAX
+        - name: departureDate
+          in: query
+          required: true
+          description: Departure date in YYYY-MM-DD format
+          schema:
+            type: string
+            format: date
+            example: "2026-04-19"
+        - name: returnDate
+          in: query
+          description: Return date for round-trip schedule queries (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+            example: "2026-04-26"
+        - name: carrier
+          in: query
+          description: Carrier filter (AS for Alaska, QX for Horizon)
+          schema:
+            type: string
+            enum:
+              - AS
+              - QX
+      responses:
+        '200':
+          description: Flight schedule data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
+              examples:
+                getSchedules200Example:
+                  summary: Default getSchedules 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: SEA
+                    destination: LAX
+                    departureDate: "2026-04-19"
+                    schedules:
+                      - flightNumber: AS123
+                        carrier: AS
+                        departureTime: "08:30"
+                        arrivalTime: "11:05"
+                        duration: 155
+                        aircraft: Boeing 737-900ER
+                        operatingDays:
+                          - Monday
+                          - Wednesday
+                          - Friday
+                        stops: 0
+                        cabin: Economy
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized - invalid API key
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /airports:
+    get:
+      operationId: listAirports
+      summary: Alaska Airlines List Airports
+      description: >-
+        Retrieve a list of airports served by Alaska Airlines and Horizon Air
+        with IATA codes, names, cities, and geographic coordinates.
+      tags:
+        - Airports
+      parameters:
+        - name: country
+          in: query
+          description: Filter airports by ISO country code
+          schema:
+            type: string
+            example: US
+        - name: state
+          in: query
+          description: Filter airports by US state code
+          schema:
+            type: string
+            example: WA
+      responses:
+        '200':
+          description: List of airports served by Alaska Airlines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportList'
+              examples:
+                listAirports200Example:
+                  summary: Default listAirports 200 response
+                  x-microcks-default: true
+                  value:
+                    airports:
+                      - iataCode: SEA
+                        name: Seattle-Tacoma International Airport
+                        city: Seattle
+                        state: WA
+                        country: US
+                        latitude: 47.4502
+                        longitude: -122.3088
+                      - iataCode: LAX
+                        name: Los Angeles International Airport
+                        city: Los Angeles
+                        state: CA
+                        country: US
+                        latitude: 33.9425
+                        longitude: -118.4081
+                    totalCount: 2
+        '401':
+          description: Unauthorized
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: Azure API Management subscription key
+  schemas:
+    Schedule:
+      title: Schedule
+      type: object
+      description: A scheduled flight between two airports
+      properties:
+        flightNumber:
+          type: string
+          description: Alaska Airlines flight number
+          example: AS123
+        carrier:
+          type: string
+          description: Operating carrier code
+          enum:
+            - AS
+            - QX
+          example: AS
+        departureTime:
+          type: string
+          description: Scheduled departure time (HH:MM local)
+          example: "08:30"
+        arrivalTime:
+          type: string
+          description: Scheduled arrival time (HH:MM local)
+          example: "11:05"
+        duration:
+          type: integer
+          description: Flight duration in minutes
+          example: 155
+        aircraft:
+          type: string
+          description: Aircraft type/model
+          example: Boeing 737-900ER
+        operatingDays:
+          type: array
+          description: Days of week this flight operates
+          items:
+            type: string
+          example:
+            - Monday
+            - Wednesday
+            - Friday
+        stops:
+          type: integer
+          description: Number of intermediate stops
+          example: 0
+        cabin:
+          type: string
+          description: Available cabin class
+          enum:
+            - First
+            - Premium Class
+            - Economy
+          example: Economy
+    ScheduleResponse:
+      title: ScheduleResponse
+      type: object
+      description: Flight schedule query response
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: LAX
+        departureDate:
+          type: string
+          format: date
+          description: Query departure date
+          example: "2026-04-19"
+        schedules:
+          type: array
+          description: List of scheduled flights
+          items:
+            $ref: '#/components/schemas/Schedule'
+    AirportInfo:
+      title: AirportInfo
+      type: object
+      description: Airport served by Alaska Airlines
+      properties:
+        iataCode:
+          type: string
+          description: IATA airport code
+          example: SEA
+        name:
+          type: string
+          description: Full airport name
+          example: Seattle-Tacoma International Airport
+        city:
+          type: string
+          description: City name
+          example: Seattle
+        state:
+          type: string
+          description: US state code
+          example: WA
+        country:
+          type: string
+          description: ISO country code
+          example: US
+        latitude:
+          type: number
+          description: Airport latitude
+          example: 47.4502
+        longitude:
+          type: number
+          description: Airport longitude
+          example: -122.3088
+        timezone:
+          type: string
+          description: Airport timezone
+          example: America/Los_Angeles
+    AirportList:
+      title: AirportList
+      type: object
+      description: List of Alaska Airlines served airports
+      properties:
+        airports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportInfo'
+        totalCount:
+          type: integer
+          description: Total airport count
+          example: 115
+tags:
+  - name: Schedules
+    description: Flight schedule data for Alaska Airlines and Horizon Air routes
+  - name: Airports
+    description: Airport information for Alaska Airlines served destinations
