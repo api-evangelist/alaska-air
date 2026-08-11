@@ -46,28 +46,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-flight-status-api
   name: Alaska Airlines Flight Status API
   description: Real-time flight status and tracking for Alaska Airlines and Horizon Air flights
@@ -82,28 +66,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-members-api
   name: Alaska Airlines Members API
   description: Mileage Plan member data and tier information
@@ -118,28 +86,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-partner-miles-api
   name: Alaska Airlines Partner Miles API
   description: Partner mile reporting for hotel, car rental, and retail activities
@@ -154,28 +106,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-rates-api
   name: Alaska Airlines Rates API
   description: Cargo rate estimation
@@ -190,28 +126,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-schedules-api
   name: Alaska Airlines Schedules API
   description: Flight schedule data for Alaska Airlines and Horizon Air routes
@@ -226,28 +146,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-shipments-api
   name: Alaska Airlines Shipments API
   description: Cargo shipment booking and tracking operations
@@ -262,28 +166,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 - aid: alaska-air:alaska-air-transactions-api
   name: Alaska Airlines Transactions API
   description: Mile earn and redemption transaction history
@@ -298,28 +186,12 @@ apis:
     url: https://developers.alaskaair.com/
   - type: APIReference
     url: https://developers.alaskaair.com/
-  - type: X-NaftikoCapability
-    url: capabilities/flight-status-flight-status.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-airports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/flight-schedules-schedules.yaml
   - type: Documentation
     url: https://www.alaskacargo.com/
   - type: Portal
     url: https://www.alaskacargo.com/
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-rates.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cargo-shipments.yaml
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-partner-miles.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/mileage-plan-transactions.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/alaska-air-agentic-access.yml
@@ -341,9 +213,6 @@ common:
     type: Blog
   - url: https://www.alaskaair.com/content/about-us/investor-relations
     type: Support
-  - url: api.support@alaskaair.com
-    type: Support
-    title: API Support Email
   - url: https://www.alaskacargo.com/
     type: Documentation
     title: Alaska Air Cargo Portal
