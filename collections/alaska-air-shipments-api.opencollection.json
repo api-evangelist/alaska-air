@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alaska Air Cargo Airports Shipments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Alaska Air Cargo List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alaskacargo.com/v1/shipments",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query",
+                "description": "End date filter (YYYY-MM-DD)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by shipment status"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of cargo shipments for the authenticated account, optionally filtered by date range or status."
+        },
+        {
+          "info": {
+            "name": "Alaska Air Cargo Create Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.alaskacargo.com/v1/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Book a new cargo shipment with Alaska Air Cargo. Provide origin, destination, commodity details, weight, dimensions, and special handling requirements to create a booking."
+        },
+        {
+          "info": {
+            "name": "Alaska Air Cargo Get Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alaskacargo.com/v1/shipments/:awbNumber",
+            "params": [
+              {
+                "name": "awbNumber",
+                "value": "",
+                "type": "path",
+                "description": "Air Waybill number (e.g., 027-12345678)"
+              }
+            ]
+          },
+          "docs": "Retrieve tracking details and current status for a specific cargo shipment by Air Waybill (AWB) number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

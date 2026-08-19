@@ -1,0 +1,479 @@
+{
+  "item": [
+    {
+      "id": "8b94f4fe-0b54-455b-9440-ffd780753504",
+      "name": "Flight Status",
+      "description": {
+        "content": "Real-time flight status and tracking for Alaska Airlines and Horizon Air flights",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c2c20f6-cb88-4d5c-bb58-900c5b9d7e96",
+          "name": "Alaska Airlines Get Flight Status",
+          "request": {
+            "name": "Alaska Airlines Get Flight Status",
+            "description": {
+              "content": "Retrieve real-time status for a specific Alaska Airlines or Horizon Air flight including departure and arrival times, gate assignments, delays, and current aircraft position.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights",
+                ":flightNumber",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "flightDate",
+                  "value": "<date>",
+                  "description": "(Required) Flight date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "originAirport",
+                  "value": "<string>",
+                  "description": "IATA code for origin airport"
+                },
+                {
+                  "disabled": false,
+                  "key": "destinationAirport",
+                  "value": "<string>",
+                  "description": "IATA code for destination airport"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flightNumber",
+                  "description": "(Required) Alaska Airlines flight number (e.g., AS123)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04c9e925-cd1b-4c60-97ad-84993cb0f1ce",
+              "name": "Flight status information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    ":flightNumber",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "flightDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "originAirport",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destinationAirport",
+                      "value": "LAX"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flightNumber",
+                      "description": "(Required) Alaska Airlines flight number (e.g., AS123)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flightNumber\": \"AS123\",\n  \"flightDate\": \"2026-04-19\",\n  \"carrier\": \"AS\",\n  \"status\": \"On Time\",\n  \"origin\": {\n    \"airportCode\": \"SEA\",\n    \"airportName\": \"Seattle-Tacoma International Airport\",\n    \"scheduledDeparture\": \"2026-04-19T08:30:00-07:00\",\n    \"estimatedDeparture\": \"2026-04-19T08:30:00-07:00\",\n    \"gate\": \"D6\",\n    \"terminal\": \"S\"\n  },\n  \"destination\": {\n    \"airportCode\": \"LAX\",\n    \"airportName\": \"Los Angeles International Airport\",\n    \"scheduledArrival\": \"2026-04-19T11:05:00-07:00\",\n    \"estimatedArrival\": \"2026-04-19T11:05:00-07:00\",\n    \"gate\": \"62A\",\n    \"terminal\": 6\n  },\n  \"aircraft\": {\n    \"type\": \"Boeing 737-900ER\",\n    \"tailNumber\": \"N491AS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3517667a-fe8d-4e44-b53a-1a417490a52e",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    ":flightNumber",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "flightDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "originAirport",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destinationAirport",
+                      "value": "LAX"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flightNumber",
+                      "description": "(Required) Alaska Airlines flight number (e.g., AS123)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8eda1b12-2685-4d08-b83a-0756a9397454",
+              "name": "Flight not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    ":flightNumber",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "flightDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "originAirport",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destinationAirport",
+                      "value": "LAX"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flightNumber",
+                      "description": "(Required) Alaska Airlines flight number (e.g., AS123)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b90e165-253c-4ac6-96a1-d9bbd1e2c228",
+          "name": "Alaska Airlines List Flights by Route",
+          "request": {
+            "name": "Alaska Airlines List Flights by Route",
+            "description": {
+              "content": "Retrieve a list of Alaska Airlines flights for a specific route and date, including status information for all scheduled departures.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "originAirport",
+                  "value": "<string>",
+                  "description": "(Required) IATA code for origin airport"
+                },
+                {
+                  "disabled": false,
+                  "key": "destinationAirport",
+                  "value": "<string>",
+                  "description": "(Required) IATA code for destination airport"
+                },
+                {
+                  "disabled": false,
+                  "key": "flightDate",
+                  "value": "<date>",
+                  "description": "(Required) Flight date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrier",
+                  "value": "<string>",
+                  "description": "Carrier code filter (AS for Alaska, QX for Horizon)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ada456-a165-4a9b-9e9e-6fcdcbfd9870",
+              "name": "List of flights for the route and date",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "originAirport",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destinationAirport",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "flightDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "AS"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flights\": [\n    {\n      \"flightNumber\": \"AS123\",\n      \"carrier\": \"AS\",\n      \"status\": \"On Time\",\n      \"scheduledDeparture\": \"2026-04-19T08:30:00-07:00\",\n      \"scheduledArrival\": \"2026-04-19T11:05:00-07:00\"\n    },\n    {\n      \"flightNumber\": \"AS567\",\n      \"carrier\": \"AS\",\n      \"status\": \"Delayed\",\n      \"scheduledDeparture\": \"2026-04-19T14:15:00-07:00\",\n      \"scheduledArrival\": \"2026-04-19T16:50:00-07:00\",\n      \"delayMinutes\": 45\n    }\n  ],\n  \"originAirport\": \"SEA\",\n  \"destinationAirport\": \"LAX\",\n  \"flightDate\": \"2026-04-19\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50cd3721-9fc7-4ec3-8c10-15c32495a668",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "originAirport",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destinationAirport",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "flightDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "AS"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9eb23a03-d5b3-49c3-9a7f-ca0232388074",
+    "name": "Alaska Air Cargo Airports Flight Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "item": [
+    {
+      "id": "4bdc0646-ae65-43bd-af7d-5d9bd14487f0",
+      "name": "Partner Miles",
+      "description": {
+        "content": "Partner mile reporting for hotel, car rental, and retail activities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a66a5a3-a727-463b-8ed1-f0508beb3328",
+          "name": "Alaska Airlines Report Partner Miles",
+          "request": {
+            "name": "Alaska Airlines Report Partner Miles",
+            "description": {
+              "content": "Report miles earned by a Mileage Plan member through a partner activity such as a hotel stay, car rental, or retail purchase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "partners",
+                "miles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"partnerId\": \"<string>\",\n  \"activityType\": \"<string>\",\n  \"activityDate\": \"<date>\",\n  \"miles\": \"<integer>\",\n  \"activityAmount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"referenceId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c45601bf-518d-44f5-ab5c-f500eb40dd29",
+              "name": "Partner miles reported successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partners",
+                    "miles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"12345678\",\n  \"partnerId\": \"MARRIOTT\",\n  \"activityType\": \"hotel_stay\",\n  \"activityDate\": \"2026-04-15\",\n  \"activityAmount\": 285,\n  \"currency\": \"USD\",\n  \"miles\": 500,\n  \"referenceId\": \"RES-123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"TXN-111222\",\n  \"memberId\": \"12345678\",\n  \"miles\": 500,\n  \"newBalance\": 125500,\n  \"status\": \"credited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f0e80f7-314d-410c-b553-8caac29457d0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partners",
+                    "miles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"12345678\",\n  \"partnerId\": \"MARRIOTT\",\n  \"activityType\": \"hotel_stay\",\n  \"activityDate\": \"2026-04-15\",\n  \"activityAmount\": 285,\n  \"currency\": \"USD\",\n  \"miles\": 500,\n  \"referenceId\": \"RES-123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7de1baec-835e-4851-9e7f-1e6ce0f62f42",
+              "name": "Member not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partners",
+                    "miles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"12345678\",\n  \"partnerId\": \"MARRIOTT\",\n  \"activityType\": \"hotel_stay\",\n  \"activityDate\": \"2026-04-15\",\n  \"activityAmount\": 285,\n  \"currency\": \"USD\",\n  \"miles\": 500,\n  \"referenceId\": \"RES-123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "60262f92-a948-4e0c-9f7b-9a3dcc719d83",
+    "name": "Alaska Air Cargo Airports Partner Miles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

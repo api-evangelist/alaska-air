@@ -1,0 +1,241 @@
+{
+  "item": [
+    {
+      "id": "d395013f-3979-4de6-aa14-8fdb25502f4a",
+      "name": "Transactions",
+      "description": {
+        "content": "Mile earn and redemption transaction history",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5744be52-1b54-4d90-9674-f6fff833edd2",
+          "name": "Alaska Airlines Get Mileage Plan Transactions",
+          "request": {
+            "name": "Alaska Airlines Get Mileage Plan Transactions",
+            "description": {
+              "content": "Retrieve mile earning and redemption transaction history for a Mileage Plan member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members",
+                ":memberId",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>",
+                  "description": "Start date filter (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>",
+                  "description": "End date filter (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Transaction type filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) Mileage Plan member number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5981647a-c8cb-4ab4-a267-ba7381ab1307",
+              "name": "Transaction history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Mileage Plan member number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberId\": \"12345678\",\n  \"transactions\": [\n    {\n      \"transactionId\": \"TXN-987654\",\n      \"type\": \"earn\",\n      \"miles\": 2500,\n      \"description\": \"Flight AS123 SEA-LAX\",\n      \"date\": \"2026-04-19\",\n      \"partner\": \"Alaska Airlines\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "782ca143-286f-4857-b458-bf1ded7846f6",
+              "name": "Member not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Mileage Plan member number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c122baf-09c2-4b9b-9e24-64f383d8e5fc",
+    "name": "Alaska Air Cargo Airports Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

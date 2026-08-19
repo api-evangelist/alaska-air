@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alaska Air Cargo Airports Flight Status API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flight Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Alaska Airlines Get Flight Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alaskacargo.com/v1/flights/:flightNumber/status",
+            "params": [
+              {
+                "name": "flightNumber",
+                "value": "",
+                "type": "path",
+                "description": "Alaska Airlines flight number (e.g., AS123)"
+              },
+              {
+                "name": "flightDate",
+                "value": "",
+                "type": "query",
+                "description": "Flight date in YYYY-MM-DD format"
+              },
+              {
+                "name": "originAirport",
+                "value": "",
+                "type": "query",
+                "description": "IATA code for origin airport"
+              },
+              {
+                "name": "destinationAirport",
+                "value": "",
+                "type": "query",
+                "description": "IATA code for destination airport"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time status for a specific Alaska Airlines or Horizon Air flight including departure and arrival times, gate assignments, delays, and current aircraft position."
+        },
+        {
+          "info": {
+            "name": "Alaska Airlines List Flights by Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alaskacargo.com/v1/flights",
+            "params": [
+              {
+                "name": "originAirport",
+                "value": "",
+                "type": "query",
+                "description": "IATA code for origin airport"
+              },
+              {
+                "name": "destinationAirport",
+                "value": "",
+                "type": "query",
+                "description": "IATA code for destination airport"
+              },
+              {
+                "name": "flightDate",
+                "value": "",
+                "type": "query",
+                "description": "Flight date in YYYY-MM-DD format"
+              },
+              {
+                "name": "carrier",
+                "value": "",
+                "type": "query",
+                "description": "Carrier code filter (AS for Alaska, QX for Horizon)"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of Alaska Airlines flights for a specific route and date, including status information for all scheduled departures."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

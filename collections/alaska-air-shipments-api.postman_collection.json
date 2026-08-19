@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "76f68071-22e2-4e73-a3f7-e1d1e6b7d91c",
+      "name": "Shipments",
+      "description": {
+        "content": "Cargo shipment booking and tracking operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f41ef69-c68d-4daa-b1ad-bb7aa8e8db3b",
+          "name": "Alaska Air Cargo Create Shipment",
+          "request": {
+            "name": "Alaska Air Cargo Create Shipment",
+            "description": {
+              "content": "Book a new cargo shipment with Alaska Air Cargo. Provide origin, destination, commodity details, weight, dimensions, and special handling requirements to create a booking.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"weight\": \"<number>\",\n  \"pieces\": \"<integer>\",\n  \"commodity\": \"<string>\",\n  \"weightUnit\": \"<string>\",\n  \"dimensions\": {\n    \"length\": \"<number>\",\n    \"width\": \"<number>\",\n    \"height\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"specialHandling\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f444bb3f-52a0-4f9c-8cb3-270111a7e7eb",
+              "name": "Shipment booking confirmed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"SEA\",\n  \"destination\": \"HNL\",\n  \"shipDate\": \"2026-04-20\",\n  \"commodity\": \"Electronics\",\n  \"weight\": 45.5,\n  \"weightUnit\": \"KG\",\n  \"pieces\": 3,\n  \"dimensions\": {\n    \"length\": 60,\n    \"width\": 40,\n    \"height\": 30,\n    \"unit\": \"CM\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"awbNumber\": \"027-12345678\",\n  \"status\": \"Booked\",\n  \"origin\": \"SEA\",\n  \"destination\": \"HNL\",\n  \"shipDate\": \"2026-04-20\",\n  \"estimatedDelivery\": \"2026-04-21\",\n  \"totalCharge\": 385.5,\n  \"currency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5342814-59be-459e-b32a-fab5ce5dac7a",
+              "name": "Invalid shipment request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"SEA\",\n  \"destination\": \"HNL\",\n  \"shipDate\": \"2026-04-20\",\n  \"commodity\": \"Electronics\",\n  \"weight\": 45.5,\n  \"weightUnit\": \"KG\",\n  \"pieces\": 3,\n  \"dimensions\": {\n    \"length\": 60,\n    \"width\": 40,\n    \"height\": 30,\n    \"unit\": \"CM\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6814643-8d22-4db5-b572-d72f211541ac",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"SEA\",\n  \"destination\": \"HNL\",\n  \"shipDate\": \"2026-04-20\",\n  \"commodity\": \"Electronics\",\n  \"weight\": 45.5,\n  \"weightUnit\": \"KG\",\n  \"pieces\": 3,\n  \"dimensions\": {\n    \"length\": 60,\n    \"width\": 40,\n    \"height\": 30,\n    \"unit\": \"CM\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c36b9b46-4bae-462d-871b-4a3bacced3be",
+          "name": "Alaska Air Cargo List Shipments",
+          "request": {
+            "name": "Alaska Air Cargo List Shipments",
+            "description": {
+              "content": "Retrieve a list of cargo shipments for the authenticated account, optionally filtered by date range or status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>",
+                  "description": "Start date filter (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>",
+                  "description": "End date filter (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by shipment status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39358017-4c45-4e0f-a573-f63036b3d8ca",
+              "name": "List of shipments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "2026-04-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shipments\": [\n    {\n      \"awbNumber\": \"027-12345678\",\n      \"origin\": \"SEA\",\n      \"destination\": \"HNL\",\n      \"status\": \"In Transit\",\n      \"shipDate\": \"2026-04-20\"\n    }\n  ],\n  \"totalCount\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "153bff6d-88bb-4524-8d05-edf0d34a7ad3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromDate",
+                      "value": "2026-04-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65c51f96-ab35-4057-9990-159bac3c46ca",
+          "name": "Alaska Air Cargo Get Shipment",
+          "request": {
+            "name": "Alaska Air Cargo Get Shipment",
+            "description": {
+              "content": "Retrieve tracking details and current status for a specific cargo shipment by Air Waybill (AWB) number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":awbNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "awbNumber",
+                  "description": "(Required) Air Waybill number (e.g., 027-12345678)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7262a017-efc2-444f-ba1f-f37e469e9c8f",
+              "name": "Shipment tracking details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":awbNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "awbNumber",
+                      "description": "(Required) Air Waybill number (e.g., 027-12345678)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"awbNumber\": \"027-12345678\",\n  \"status\": \"In Transit\",\n  \"origin\": \"SEA\",\n  \"destination\": \"HNL\",\n  \"currentLocation\": \"SEA\",\n  \"estimatedDelivery\": \"2026-04-21\",\n  \"events\": [\n    {\n      \"timestamp\": \"2026-04-20T10:30:00-07:00\",\n      \"location\": \"SEA\",\n      \"event\": \"Accepted\",\n      \"description\": \"Shipment accepted at Seattle\"\n    },\n    {\n      \"timestamp\": \"2026-04-20T18:45:00-07:00\",\n      \"location\": \"SEA\",\n      \"event\": \"Departed\",\n      \"description\": \"Departed Seattle on AS847\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "865f51af-bc58-4e3e-b80e-115a181cefd1",
+              "name": "Shipment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":awbNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "awbNumber",
+                      "description": "(Required) Air Waybill number (e.g., 027-12345678)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "244d8e36-d996-4d96-bbcd-1e1c398fae7c",
+    "name": "Alaska Air Cargo Airports Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

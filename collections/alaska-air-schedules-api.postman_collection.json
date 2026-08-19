@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "a929febe-0d31-41a8-b082-bbd9846e5a27",
+      "name": "Schedules",
+      "description": {
+        "content": "Flight schedule data for Alaska Airlines and Horizon Air routes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f0fc636-1e9f-4152-85da-20abde1207a5",
+          "name": "Alaska Airlines Get Flight Schedules",
+          "request": {
+            "name": "Alaska Airlines Get Flight Schedules",
+            "description": {
+              "content": "Retrieve scheduled flights for a specific route and date range, including departure/arrival times, operating days, frequency, and aircraft equipment type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "origin",
+                  "value": "<string>",
+                  "description": "(Required) IATA origin airport code"
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<string>",
+                  "description": "(Required) IATA destination airport code"
+                },
+                {
+                  "disabled": false,
+                  "key": "departureDate",
+                  "value": "<date>",
+                  "description": "(Required) Departure date in YYYY-MM-DD format"
+                },
+                {
+                  "disabled": false,
+                  "key": "returnDate",
+                  "value": "<date>",
+                  "description": "Return date for round-trip schedule queries (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrier",
+                  "value": "<string>",
+                  "description": "Carrier filter (AS for Alaska, QX for Horizon)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c29c7262-5ce7-473f-ac61-061ff44c862c",
+              "name": "Flight schedule data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "returnDate",
+                      "value": "2026-04-26"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"SEA\",\n  \"destination\": \"LAX\",\n  \"departureDate\": \"2026-04-19\",\n  \"schedules\": [\n    {\n      \"flightNumber\": \"AS123\",\n      \"carrier\": \"AS\",\n      \"departureTime\": \"08:30\",\n      \"arrivalTime\": \"11:05\",\n      \"duration\": 155,\n      \"aircraft\": \"Boeing 737-900ER\",\n      \"operatingDays\": [\n        \"Monday\",\n        \"Wednesday\",\n        \"Friday\"\n      ],\n      \"stops\": 0,\n      \"cabin\": \"Economy\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c97c2d40-fa11-4cca-8100-bb819e50e98b",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "returnDate",
+                      "value": "2026-04-26"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c9d4451-c24f-4866-ad2e-63f9aaeaae6f",
+              "name": "Unauthorized - invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "origin",
+                      "value": "SEA"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "LAX"
+                    },
+                    {
+                      "key": "departureDate",
+                      "value": "2026-04-19"
+                    },
+                    {
+                      "key": "returnDate",
+                      "value": "2026-04-26"
+                    },
+                    {
+                      "key": "carrier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ba1bd326-d8cf-4d9d-8bc3-3e49b0368a7d",
+    "name": "Alaska Air Cargo Airports Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

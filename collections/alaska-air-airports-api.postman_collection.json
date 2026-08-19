@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "fbd94e68-6fef-4c69-8137-1e30cd542e34",
+      "name": "Airports",
+      "description": {
+        "content": "Airport information for Alaska Airlines served destinations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7d09d60-a4a9-4503-b016-10ad0341541b",
+          "name": "Alaska Airlines List Airports",
+          "request": {
+            "name": "Alaska Airlines List Airports",
+            "description": {
+              "content": "Retrieve a list of airports served by Alaska Airlines and Horizon Air with IATA codes, names, cities, and geographic coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "airports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter airports by ISO country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter airports by US state code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fec32bf-582d-4b9f-9352-ee2e5f5ade84",
+              "name": "List of airports served by Alaska Airlines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "state",
+                      "value": "WA"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"airports\": [\n    {\n      \"iataCode\": \"SEA\",\n      \"name\": \"Seattle-Tacoma International Airport\",\n      \"city\": \"Seattle\",\n      \"state\": \"WA\",\n      \"country\": \"US\",\n      \"latitude\": 47.4502,\n      \"longitude\": -122.3088\n    },\n    {\n      \"iataCode\": \"LAX\",\n      \"name\": \"Los Angeles International Airport\",\n      \"city\": \"Los Angeles\",\n      \"state\": \"CA\",\n      \"country\": \"US\",\n      \"latitude\": 33.9425,\n      \"longitude\": -118.4081\n    }\n  ],\n  \"totalCount\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79819478-6400-4888-9e7b-71d2cf603213",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "state",
+                      "value": "WA"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alaskacargo.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Ocp-Apim-Subscription-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "99d2adcb-0073-4e79-ae92-c70805424a16",
+    "name": "Alaska Air Cargo Airports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.\n\nContact Support:\n Name: Alaska Air Cargo",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alaska Air Cargo Airports Schedules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Alaska Airlines Get Flight Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alaskacargo.com/v1/schedules",
+            "params": [
+              {
+                "name": "origin",
+                "value": "",
+                "type": "query",
+                "description": "IATA origin airport code"
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "IATA destination airport code"
+              },
+              {
+                "name": "departureDate",
+                "value": "",
+                "type": "query",
+                "description": "Departure date in YYYY-MM-DD format"
+              },
+              {
+                "name": "returnDate",
+                "value": "",
+                "type": "query",
+                "description": "Return date for round-trip schedule queries (YYYY-MM-DD)"
+              },
+              {
+                "name": "carrier",
+                "value": "",
+                "type": "query",
+                "description": "Carrier filter (AS for Alaska, QX for Horizon)"
+              }
+            ]
+          },
+          "docs": "Retrieve scheduled flights for a specific route and date range, including departure/arrival times, operating days, frequency, and aircraft equipment type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

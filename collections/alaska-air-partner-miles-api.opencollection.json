@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alaska Air Cargo Airports Partner Miles API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Ocp-Apim-Subscription-Key",
+      "value": "{{Ocp-Apim-Subscription-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partner Miles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Alaska Airlines Report Partner Miles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.alaskacargo.com/v1/partners/miles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Report miles earned by a Mileage Plan member through a partner activity such as a hotel stay, car rental, or retail purchase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
