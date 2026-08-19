@@ -30,7 +30,7 @@ description: Alaska Air Group is the parent company of Alaska Airlines and Horiz
   serving 115+ destinations worldwide with dedicated cargo aircraft.
 created: '2024-01-01'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: alaska-air:alaska-air-airports-api
   name: Alaska Airlines Airports API
