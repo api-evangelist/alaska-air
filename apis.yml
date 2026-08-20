@@ -178,6 +178,8 @@ apis:
   humanURL: https://developers.alaskaair.com/
   baseURL: https://api.alaskaair.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
