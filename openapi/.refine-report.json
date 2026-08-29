@@ -1,28 +1,39 @@
 {
   "provider": "alaska-air",
   "sources": [
-    "alaska-air-airports-api-openapi.yml",
-    "alaska-air-flight-status-api-openapi.yml",
-    "alaska-air-members-api-openapi.yml",
-    "alaska-air-partner-miles-api-openapi.yml",
-    "alaska-air-rates-api-openapi.yml",
-    "alaska-air-schedules-api-openapi.yml",
-    "alaska-air-shipments-api-openapi.yml",
-    "alaska-air-transactions-api-openapi.yml"
+    "_original/alaska-air-cargo-openapi.yaml",
+    "_original/alaska-air-flight-schedules-openapi.yaml",
+    "_original/alaska-air-flight-status-openapi.yaml",
+    "_original/alaska-air-mileage-plan-openapi.yaml"
   ],
   "outputs": [
+    "alaska-air-rates-api-openapi.yml",
+    "alaska-air-shipments-api-openapi.yml",
     "alaska-air-airports-api-openapi.yml",
+    "alaska-air-schedules-api-openapi.yml",
     "alaska-air-flight-status-api-openapi.yml",
     "alaska-air-members-api-openapi.yml",
     "alaska-air-partner-miles-api-openapi.yml",
-    "alaska-air-rates-api-openapi.yml",
-    "alaska-air-schedules-api-openapi.yml",
-    "alaska-air-shipments-api-openapi.yml",
     "alaska-air-transactions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "alaska-air-cargo-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alaska-air-flight-schedules-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alaska-air-flight-status-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alaska-air-mileage-plan-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "alaska-air-airports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-flight-status-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-partner-miles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-rates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alaska-air-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

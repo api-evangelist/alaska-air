@@ -1,18 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alaska Air Cargo Airports API
-  description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+  title: Alaska Airlines Flight Schedules Airports API
+  description: The Alaska Airlines Flight Schedules API provides access to flight schedule data including route information, operating days, departure and arrival times, and equipment information across the Alaska Airlines and Horizon Air networks.
   version: 1.0.0
   contact:
-    name: Alaska Air Cargo
-    url: https://www.alaskacargo.com/
+    name: Alaska Airlines API Support
+    url: https://developers.alaskaair.com/
+    email: api.support@alaskaair.com
   license:
     name: Proprietary
-    url: https://www.alaskacargo.com/
+    url: https://developers.alaskaair.com/
   x-generated-from: documentation
 servers:
-- url: https://api.alaskacargo.com/v1
-  description: Alaska Air Cargo API server
+- url: https://api.alaskaair.com/v1
+  description: Alaska Airlines API production server
 security:
 - ApiKeyHeader: []
 tags:
@@ -74,6 +75,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AirportList:
+      title: AirportList
+      type: object
+      description: List of Alaska Airlines served airports
+      properties:
+        airports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportInfo'
+        totalCount:
+          type: integer
+          description: Total airport count
+          example: 115
     AirportInfo:
       title: AirportInfo
       type: object
@@ -111,22 +125,9 @@ components:
           type: string
           description: Airport timezone
           example: America/Los_Angeles
-    AirportList:
-      title: AirportList
-      type: object
-      description: List of Alaska Airlines served airports
-      properties:
-        airports:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirportInfo'
-        totalCount:
-          type: integer
-          description: Total airport count
-          example: 115
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
       in: header
       name: Ocp-Apim-Subscription-Key
-      description: API subscription key for Alaska Air Cargo
+      description: Azure API Management subscription key

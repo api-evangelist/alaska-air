@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alaska Air Cargo Airports Shipments API
+  title: Alaska Air Cargo Shipments API
   description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
   version: 1.0.0
   contact:
@@ -180,47 +180,10 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Dimensions:
-      title: Dimensions
+    ShipmentTracking:
+      title: ShipmentTracking
       type: object
-      description: Package dimensions
-      properties:
-        length:
-          type: number
-          description: Package length
-          example: 60
-        width:
-          type: number
-          description: Package width
-          example: 40
-        height:
-          type: number
-          description: Package height
-          example: 30
-        unit:
-          type: string
-          description: Dimension unit
-          enum:
-          - CM
-          - IN
-          example: CM
-    ShipmentList:
-      title: ShipmentList
-      type: object
-      description: List of cargo shipments
-      properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        totalCount:
-          type: integer
-          description: Total shipment count
-          example: 42
-    Shipment:
-      title: Shipment
-      type: object
-      description: Confirmed cargo shipment booking
+      description: Shipment tracking details with event history
       properties:
         awbNumber:
           type: string
@@ -228,13 +191,8 @@ components:
           example: 027-12345678
         status:
           type: string
-          description: Shipment status
-          enum:
-          - Booked
-          - In Transit
-          - Delivered
-          - Cancelled
-          example: Booked
+          description: Current status
+          example: In Transit
         origin:
           type: string
           description: Origin airport IATA code
@@ -243,24 +201,20 @@ components:
           type: string
           description: Destination airport IATA code
           example: HNL
-        shipDate:
+        currentLocation:
           type: string
-          format: date
-          description: Ship date
-          example: '2026-04-20'
+          description: Current location IATA code
+          example: SEA
         estimatedDelivery:
           type: string
           format: date
           description: Estimated delivery date
           example: '2026-04-21'
-        totalCharge:
-          type: number
-          description: Total cargo charge in USD
-          example: 385.5
-        currency:
-          type: string
-          description: Charge currency
-          example: USD
+        events:
+          type: array
+          description: Tracking event history
+          items:
+            $ref: '#/components/schemas/TrackingEvent'
     ShipmentRequest:
       title: ShipmentRequest
       type: object
@@ -313,41 +267,43 @@ components:
             type: string
           example:
           - Fragile
-    ShipmentTracking:
-      title: ShipmentTracking
+    Dimensions:
+      title: Dimensions
       type: object
-      description: Shipment tracking details with event history
+      description: Package dimensions
       properties:
-        awbNumber:
+        length:
+          type: number
+          description: Package length
+          example: 60
+        width:
+          type: number
+          description: Package width
+          example: 40
+        height:
+          type: number
+          description: Package height
+          example: 30
+        unit:
           type: string
-          description: Air Waybill number
-          example: 027-12345678
-        status:
-          type: string
-          description: Current status
-          example: In Transit
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: HNL
-        currentLocation:
-          type: string
-          description: Current location IATA code
-          example: SEA
-        estimatedDelivery:
-          type: string
-          format: date
-          description: Estimated delivery date
-          example: '2026-04-21'
-        events:
+          description: Dimension unit
+          enum:
+          - CM
+          - IN
+          example: CM
+    ShipmentList:
+      title: ShipmentList
+      type: object
+      description: List of cargo shipments
+      properties:
+        shipments:
           type: array
-          description: Tracking event history
           items:
-            $ref: '#/components/schemas/TrackingEvent'
+            $ref: '#/components/schemas/Shipment'
+        totalCount:
+          type: integer
+          description: Total shipment count
+          example: 42
     TrackingEvent:
       title: TrackingEvent
       type: object
@@ -370,6 +326,50 @@ components:
           type: string
           description: Event description
           example: Shipment accepted at Seattle
+    Shipment:
+      title: Shipment
+      type: object
+      description: Confirmed cargo shipment booking
+      properties:
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Shipment status
+          enum:
+          - Booked
+          - In Transit
+          - Delivered
+          - Cancelled
+          example: Booked
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        totalCharge:
+          type: number
+          description: Total cargo charge in USD
+          example: 385.5
+        currency:
+          type: string
+          description: Charge currency
+          example: USD
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

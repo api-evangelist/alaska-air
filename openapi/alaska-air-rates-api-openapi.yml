@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alaska Air Cargo Airports Rates API
+  title: Alaska Air Cargo Rates API
   description: Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
   version: 1.0.0
   contact:
