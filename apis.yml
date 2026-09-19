@@ -149,6 +149,8 @@ apis:
   humanURL: https://developers.alaskaair.com/
   baseURL: https://api.alaskaair.com
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
