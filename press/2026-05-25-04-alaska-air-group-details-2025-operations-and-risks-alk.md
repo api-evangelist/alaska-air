@@ -1,7 +1,9 @@
 ---
 title: Alaska Air Group details 2025 operations and risks - ALK
 url: https://www.stocktitan.net/sec-filings/ALK/10-k-alaska-air-group-inc-files-annual-report-e351e80cfb66.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Alaska Air Group" press release artificial intelligence'
 position: 4
 source: serpapi-google

@@ -72,35 +72,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PartnerMilesResponse:
-      title: PartnerMilesResponse
-      type: object
-      description: Response confirming partner miles credit
-      properties:
-        transactionId:
-          type: string
-          description: Unique transaction identifier
-          example: TXN-111222
-        memberId:
-          type: string
-          description: Member number
-          example: '12345678'
-        miles:
-          type: integer
-          description: Miles credited
-          example: 500
-        newBalance:
-          type: integer
-          description: Updated mile balance
-          example: 125500
-        status:
-          type: string
-          description: Transaction status
-          enum:
-          - credited
-          - pending
-          - rejected
-          example: credited
     PartnerMilesRequest:
       title: PartnerMilesRequest
       type: object
@@ -151,6 +122,35 @@ components:
           type: string
           description: Partner activity reference number
           example: RES-123456
+    PartnerMilesResponse:
+      title: PartnerMilesResponse
+      type: object
+      description: Response confirming partner miles credit
+      properties:
+        transactionId:
+          type: string
+          description: Unique transaction identifier
+          example: TXN-111222
+        memberId:
+          type: string
+          description: Member number
+          example: '12345678'
+        miles:
+          type: integer
+          description: Miles credited
+          example: 500
+        newBalance:
+          type: integer
+          description: Updated mile balance
+          example: 125500
+        status:
+          type: string
+          description: Transaction status
+          enum:
+          - credited
+          - pending
+          - rejected
+          example: credited
   securitySchemes:
     OAuth2:
       type: oauth2

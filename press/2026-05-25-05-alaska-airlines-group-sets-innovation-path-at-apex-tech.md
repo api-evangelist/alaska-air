@@ -1,7 +1,9 @@
 ---
 title: Alaska Airlines Group Sets Innovation Path at APEX TECH ...
 url: https://apex.aero/articles/alaska-airlines-group-sets-innovation-path-at-apex-tech-2025-keynote/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Alaska Air Group" press release artificial intelligence'
 position: 5
 source: serpapi-google

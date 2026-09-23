@@ -214,42 +214,37 @@ components:
           $ref: '#/components/schemas/Airport'
         aircraft:
           $ref: '#/components/schemas/Aircraft'
-    FlightList:
-      title: FlightList
+    FlightSummary:
+      title: FlightSummary
       type: object
-      description: List of flights for a route and date
+      description: Summary flight information for route listing
       properties:
-        flights:
-          type: array
-          description: Array of flight summaries
-          items:
-            $ref: '#/components/schemas/FlightSummary'
-        originAirport:
+        flightNumber:
           type: string
-          description: Origin airport IATA code
-          example: SEA
-        destinationAirport:
+          description: Flight number
+          example: AS123
+        carrier:
           type: string
-          description: Destination airport IATA code
-          example: LAX
-        flightDate:
+          description: Operating carrier code
+          example: AS
+        status:
           type: string
-          format: date
-          description: Flight date
-          example: '2026-04-19'
-    Aircraft:
-      title: Aircraft
-      type: object
-      description: Aircraft information for the flight
-      properties:
-        type:
+          description: Flight status
+          example: On Time
+        scheduledDeparture:
           type: string
-          description: Aircraft type/model
-          example: Boeing 737-900ER
-        tailNumber:
+          format: date-time
+          description: Scheduled departure time
+          example: '2026-04-19T08:30:00-07:00'
+        scheduledArrival:
           type: string
-          description: Aircraft tail number (registration)
-          example: N491AS
+          format: date-time
+          description: Scheduled arrival time
+          example: '2026-04-19T11:05:00-07:00'
+        delayMinutes:
+          type: integer
+          description: Delay in minutes
+          example: 0
     Airport:
       title: Airport
       type: object
@@ -291,37 +286,42 @@ components:
           type: string
           description: Terminal designation
           example: S
-    FlightSummary:
-      title: FlightSummary
+    Aircraft:
+      title: Aircraft
       type: object
-      description: Summary flight information for route listing
+      description: Aircraft information for the flight
       properties:
-        flightNumber:
+        type:
           type: string
-          description: Flight number
-          example: AS123
-        carrier:
+          description: Aircraft type/model
+          example: Boeing 737-900ER
+        tailNumber:
           type: string
-          description: Operating carrier code
-          example: AS
-        status:
+          description: Aircraft tail number (registration)
+          example: N491AS
+    FlightList:
+      title: FlightList
+      type: object
+      description: List of flights for a route and date
+      properties:
+        flights:
+          type: array
+          description: Array of flight summaries
+          items:
+            $ref: '#/components/schemas/FlightSummary'
+        originAirport:
           type: string
-          description: Flight status
-          example: On Time
-        scheduledDeparture:
+          description: Origin airport IATA code
+          example: SEA
+        destinationAirport:
           type: string
-          format: date-time
-          description: Scheduled departure time
-          example: '2026-04-19T08:30:00-07:00'
-        scheduledArrival:
+          description: Destination airport IATA code
+          example: LAX
+        flightDate:
           type: string
-          format: date-time
-          description: Scheduled arrival time
-          example: '2026-04-19T11:05:00-07:00'
-        delayMinutes:
-          type: integer
-          description: Delay in minutes
-          example: 0
+          format: date
+          description: Flight date
+          example: '2026-04-19'
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

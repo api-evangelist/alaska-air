@@ -75,19 +75,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AirportList:
-      title: AirportList
-      type: object
-      description: List of Alaska Airlines served airports
-      properties:
-        airports:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirportInfo'
-        totalCount:
-          type: integer
-          description: Total airport count
-          example: 115
     AirportInfo:
       title: AirportInfo
       type: object
@@ -125,6 +112,19 @@ components:
           type: string
           description: Airport timezone
           example: America/Los_Angeles
+    AirportList:
+      title: AirportList
+      type: object
+      description: List of Alaska Airlines served airports
+      properties:
+        airports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirportInfo'
+        totalCount:
+          type: integer
+          description: Total airport count
+          example: 115
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

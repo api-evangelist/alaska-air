@@ -1,10 +1,10 @@
 {
   "provider": "alaska-air",
   "sources": [
-    "_original/alaska-air-cargo-openapi.yaml",
-    "_original/alaska-air-flight-schedules-openapi.yaml",
-    "_original/alaska-air-flight-status-openapi.yaml",
-    "_original/alaska-air-mileage-plan-openapi.yaml"
+    "_ae-authored/alaska-air-cargo-openapi.yaml",
+    "_ae-authored/alaska-air-flight-schedules-openapi.yaml",
+    "_ae-authored/alaska-air-flight-status-openapi.yaml",
+    "_ae-authored/alaska-air-mileage-plan-openapi.yaml"
   ],
   "outputs": [
     "alaska-air-rates-api-openapi.yml",
@@ -20,11 +20,12 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "alaska-air-cargo-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "alaska-air-flight-schedules-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "alaska-air-flight-status-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "alaska-air-mileage-plan-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "alaska-air-mileage-plan-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "alaska-air-airports-api-openapi.yml: previously refined output, superseded by openapi/_original/",

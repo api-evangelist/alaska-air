@@ -1,7 +1,9 @@
 ---
 title: Alaska Airlines and Airspace Intelligence announce first-of- ...
 url: https://news.alaskaair.com/newsroom/alaska-airlines-and-airspace-intelligence-announce-first-of-its-kind-partnership-to-optimize-air-traffic-flow-with-artificial-intelligence-and-machine-learning/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Alaska Air Group" press release artificial intelligence'
 position: 3
 source: serpapi-google
