@@ -168,52 +168,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    FlightStatus:
-      title: FlightStatus
-      type: object
-      description: Real-time status for an Alaska Airlines flight
-      properties:
-        flightNumber:
-          type: string
-          description: Flight number including carrier code
-          example: AS123
-        flightDate:
-          type: string
-          format: date
-          description: Flight operating date
-          example: '2026-04-19'
-        carrier:
-          type: string
-          description: Operating carrier code
-          enum:
-          - AS
-          - QX
-          example: AS
-        status:
-          type: string
-          description: Flight status description
-          enum:
-          - On Time
-          - Delayed
-          - Cancelled
-          - Departed
-          - Arrived
-          - Diverted
-          example: On Time
-        delayMinutes:
-          type: integer
-          description: Delay in minutes (0 if on time)
-          example: 0
-        delayReason:
-          type: string
-          description: Reason for delay if applicable
-          example: Late arriving aircraft
-        origin:
-          $ref: '#/components/schemas/Airport'
-        destination:
-          $ref: '#/components/schemas/Airport'
-        aircraft:
-          $ref: '#/components/schemas/Aircraft'
     FlightSummary:
       title: FlightSummary
       type: object
@@ -299,6 +253,52 @@ components:
           type: string
           description: Aircraft tail number (registration)
           example: N491AS
+    FlightStatus:
+      title: FlightStatus
+      type: object
+      description: Real-time status for an Alaska Airlines flight
+      properties:
+        flightNumber:
+          type: string
+          description: Flight number including carrier code
+          example: AS123
+        flightDate:
+          type: string
+          format: date
+          description: Flight operating date
+          example: '2026-04-19'
+        carrier:
+          type: string
+          description: Operating carrier code
+          enum:
+          - AS
+          - QX
+          example: AS
+        status:
+          type: string
+          description: Flight status description
+          enum:
+          - On Time
+          - Delayed
+          - Cancelled
+          - Departed
+          - Arrived
+          - Diverted
+          example: On Time
+        delayMinutes:
+          type: integer
+          description: Delay in minutes (0 if on time)
+          example: 0
+        delayReason:
+          type: string
+          description: Reason for delay if applicable
+          example: Late arriving aircraft
+        origin:
+          $ref: '#/components/schemas/Airport'
+        destination:
+          $ref: '#/components/schemas/Airport'
+        aircraft:
+          $ref: '#/components/schemas/Aircraft'
     FlightList:
       title: FlightList
       type: object
