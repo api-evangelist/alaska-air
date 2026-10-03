@@ -180,6 +180,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ShipmentList:
+      title: ShipmentList
+      type: object
+      description: List of cargo shipments
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        totalCount:
+          type: integer
+          description: Total shipment count
+          example: 42
     ShipmentRequest:
       title: ShipmentRequest
       type: object
@@ -254,50 +267,6 @@ components:
           type: string
           description: Event description
           example: Shipment accepted at Seattle
-    Shipment:
-      title: Shipment
-      type: object
-      description: Confirmed cargo shipment booking
-      properties:
-        awbNumber:
-          type: string
-          description: Air Waybill number
-          example: 027-12345678
-        status:
-          type: string
-          description: Shipment status
-          enum:
-          - Booked
-          - In Transit
-          - Delivered
-          - Cancelled
-          example: Booked
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: HNL
-        shipDate:
-          type: string
-          format: date
-          description: Ship date
-          example: '2026-04-20'
-        estimatedDelivery:
-          type: string
-          format: date
-          description: Estimated delivery date
-          example: '2026-04-21'
-        totalCharge:
-          type: number
-          description: Total cargo charge in USD
-          example: 385.5
-        currency:
-          type: string
-          description: Charge currency
-          example: USD
     Dimensions:
       title: Dimensions
       type: object
@@ -357,19 +326,50 @@ components:
           description: Tracking event history
           items:
             $ref: '#/components/schemas/TrackingEvent'
-    ShipmentList:
-      title: ShipmentList
+    Shipment:
+      title: Shipment
       type: object
-      description: List of cargo shipments
+      description: Confirmed cargo shipment booking
       properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        totalCount:
-          type: integer
-          description: Total shipment count
-          example: 42
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Shipment status
+          enum:
+          - Booked
+          - In Transit
+          - Delivered
+          - Cancelled
+          example: Booked
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        totalCharge:
+          type: number
+          description: Total cargo charge in USD
+          example: 385.5
+        currency:
+          type: string
+          description: Charge currency
+          example: USD
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
