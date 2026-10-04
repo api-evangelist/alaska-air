@@ -84,6 +84,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    TransactionList:
+      title: TransactionList
+      type: object
+      description: List of Mileage Plan transactions
+      properties:
+        memberId:
+          type: string
+          description: Member number
+          example: '12345678'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalCount:
+          type: integer
+          description: Total transaction count
+          example: 42
     Transaction:
       title: Transaction
       type: object
@@ -117,23 +134,6 @@ components:
           type: string
           description: Partner name
           example: Alaska Airlines
-    TransactionList:
-      title: TransactionList
-      type: object
-      description: List of Mileage Plan transactions
-      properties:
-        memberId:
-          type: string
-          description: Member number
-          example: '12345678'
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        totalCount:
-          type: integer
-          description: Total transaction count
-          example: 42
   securitySchemes:
     OAuth2:
       type: oauth2

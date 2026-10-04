@@ -180,19 +180,131 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ShipmentList:
-      title: ShipmentList
+    Shipment:
+      title: Shipment
       type: object
-      description: List of cargo shipments
+      description: Confirmed cargo shipment booking
       properties:
-        shipments:
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Shipment status
+          enum:
+          - Booked
+          - In Transit
+          - Delivered
+          - Cancelled
+          example: Booked
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        totalCharge:
+          type: number
+          description: Total cargo charge in USD
+          example: 385.5
+        currency:
+          type: string
+          description: Charge currency
+          example: USD
+    ShipmentTracking:
+      title: ShipmentTracking
+      type: object
+      description: Shipment tracking details with event history
+      properties:
+        awbNumber:
+          type: string
+          description: Air Waybill number
+          example: 027-12345678
+        status:
+          type: string
+          description: Current status
+          example: In Transit
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        currentLocation:
+          type: string
+          description: Current location IATA code
+          example: SEA
+        estimatedDelivery:
+          type: string
+          format: date
+          description: Estimated delivery date
+          example: '2026-04-21'
+        events:
           type: array
+          description: Tracking event history
           items:
-            $ref: '#/components/schemas/Shipment'
-        totalCount:
-          type: integer
-          description: Total shipment count
-          example: 42
+            $ref: '#/components/schemas/TrackingEvent'
+    Dimensions:
+      title: Dimensions
+      type: object
+      description: Package dimensions
+      properties:
+        length:
+          type: number
+          description: Package length
+          example: 60
+        width:
+          type: number
+          description: Package width
+          example: 40
+        height:
+          type: number
+          description: Package height
+          example: 30
+        unit:
+          type: string
+          description: Dimension unit
+          enum:
+          - CM
+          - IN
+          example: CM
+    TrackingEvent:
+      title: TrackingEvent
+      type: object
+      description: A cargo tracking event
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+          example: '2026-04-20T10:30:00-07:00'
+        location:
+          type: string
+          description: Location IATA code
+          example: SEA
+        event:
+          type: string
+          description: Event type
+          example: Accepted
+        description:
+          type: string
+          description: Event description
+          example: Shipment accepted at Seattle
     ShipmentRequest:
       title: ShipmentRequest
       type: object
@@ -245,131 +357,19 @@ components:
             type: string
           example:
           - Fragile
-    TrackingEvent:
-      title: TrackingEvent
+    ShipmentList:
+      title: ShipmentList
       type: object
-      description: A cargo tracking event
+      description: List of cargo shipments
       properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Event timestamp
-          example: '2026-04-20T10:30:00-07:00'
-        location:
-          type: string
-          description: Location IATA code
-          example: SEA
-        event:
-          type: string
-          description: Event type
-          example: Accepted
-        description:
-          type: string
-          description: Event description
-          example: Shipment accepted at Seattle
-    Dimensions:
-      title: Dimensions
-      type: object
-      description: Package dimensions
-      properties:
-        length:
-          type: number
-          description: Package length
-          example: 60
-        width:
-          type: number
-          description: Package width
-          example: 40
-        height:
-          type: number
-          description: Package height
-          example: 30
-        unit:
-          type: string
-          description: Dimension unit
-          enum:
-          - CM
-          - IN
-          example: CM
-    ShipmentTracking:
-      title: ShipmentTracking
-      type: object
-      description: Shipment tracking details with event history
-      properties:
-        awbNumber:
-          type: string
-          description: Air Waybill number
-          example: 027-12345678
-        status:
-          type: string
-          description: Current status
-          example: In Transit
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: HNL
-        currentLocation:
-          type: string
-          description: Current location IATA code
-          example: SEA
-        estimatedDelivery:
-          type: string
-          format: date
-          description: Estimated delivery date
-          example: '2026-04-21'
-        events:
+        shipments:
           type: array
-          description: Tracking event history
           items:
-            $ref: '#/components/schemas/TrackingEvent'
-    Shipment:
-      title: Shipment
-      type: object
-      description: Confirmed cargo shipment booking
-      properties:
-        awbNumber:
-          type: string
-          description: Air Waybill number
-          example: 027-12345678
-        status:
-          type: string
-          description: Shipment status
-          enum:
-          - Booked
-          - In Transit
-          - Delivered
-          - Cancelled
-          example: Booked
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: HNL
-        shipDate:
-          type: string
-          format: date
-          description: Ship date
-          example: '2026-04-20'
-        estimatedDelivery:
-          type: string
-          format: date
-          description: Estimated delivery date
-          example: '2026-04-21'
-        totalCharge:
-          type: number
-          description: Total cargo charge in USD
-          example: 385.5
-        currency:
-          type: string
-          description: Charge currency
-          example: USD
+            $ref: '#/components/schemas/Shipment'
+        totalCount:
+          type: integer
+          description: Total shipment count
+          example: 42
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

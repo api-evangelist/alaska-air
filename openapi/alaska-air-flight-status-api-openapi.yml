@@ -168,47 +168,52 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Airport:
-      title: Airport
+    FlightStatus:
+      title: FlightStatus
       type: object
-      description: Airport departure or arrival information
+      description: Real-time status for an Alaska Airlines flight
       properties:
-        airportCode:
+        flightNumber:
           type: string
-          description: IATA airport code
-          example: SEA
-        airportName:
+          description: Flight number including carrier code
+          example: AS123
+        flightDate:
           type: string
-          description: Full airport name
-          example: Seattle-Tacoma International Airport
-        scheduledDeparture:
+          format: date
+          description: Flight operating date
+          example: '2026-04-19'
+        carrier:
           type: string
-          format: date-time
-          description: Scheduled departure time with timezone
-          example: '2026-04-19T08:30:00-07:00'
-        estimatedDeparture:
+          description: Operating carrier code
+          enum:
+          - AS
+          - QX
+          example: AS
+        status:
           type: string
-          format: date-time
-          description: Estimated departure time with timezone
-          example: '2026-04-19T08:30:00-07:00'
-        scheduledArrival:
+          description: Flight status description
+          enum:
+          - On Time
+          - Delayed
+          - Cancelled
+          - Departed
+          - Arrived
+          - Diverted
+          example: On Time
+        delayMinutes:
+          type: integer
+          description: Delay in minutes (0 if on time)
+          example: 0
+        delayReason:
           type: string
-          format: date-time
-          description: Scheduled arrival time with timezone
-          example: '2026-04-19T11:05:00-07:00'
-        estimatedArrival:
-          type: string
-          format: date-time
-          description: Estimated arrival time with timezone
-          example: '2026-04-19T11:05:00-07:00'
-        gate:
-          type: string
-          description: Gate assignment
-          example: D6
-        terminal:
-          type: string
-          description: Terminal designation
-          example: S
+          description: Reason for delay if applicable
+          example: Late arriving aircraft
+        origin:
+          $ref: '#/components/schemas/Airport'
+        destination:
+          $ref: '#/components/schemas/Airport'
+        aircraft:
+          $ref: '#/components/schemas/Aircraft'
     Aircraft:
       title: Aircraft
       type: object
@@ -276,52 +281,47 @@ components:
           format: date
           description: Flight date
           example: '2026-04-19'
-    FlightStatus:
-      title: FlightStatus
+    Airport:
+      title: Airport
       type: object
-      description: Real-time status for an Alaska Airlines flight
+      description: Airport departure or arrival information
       properties:
-        flightNumber:
+        airportCode:
           type: string
-          description: Flight number including carrier code
-          example: AS123
-        flightDate:
+          description: IATA airport code
+          example: SEA
+        airportName:
           type: string
-          format: date
-          description: Flight operating date
-          example: '2026-04-19'
-        carrier:
+          description: Full airport name
+          example: Seattle-Tacoma International Airport
+        scheduledDeparture:
           type: string
-          description: Operating carrier code
-          enum:
-          - AS
-          - QX
-          example: AS
-        status:
+          format: date-time
+          description: Scheduled departure time with timezone
+          example: '2026-04-19T08:30:00-07:00'
+        estimatedDeparture:
           type: string
-          description: Flight status description
-          enum:
-          - On Time
-          - Delayed
-          - Cancelled
-          - Departed
-          - Arrived
-          - Diverted
-          example: On Time
-        delayMinutes:
-          type: integer
-          description: Delay in minutes (0 if on time)
-          example: 0
-        delayReason:
+          format: date-time
+          description: Estimated departure time with timezone
+          example: '2026-04-19T08:30:00-07:00'
+        scheduledArrival:
           type: string
-          description: Reason for delay if applicable
-          example: Late arriving aircraft
-        origin:
-          $ref: '#/components/schemas/Airport'
-        destination:
-          $ref: '#/components/schemas/Airport'
-        aircraft:
-          $ref: '#/components/schemas/Aircraft'
+          format: date-time
+          description: Scheduled arrival time with timezone
+          example: '2026-04-19T11:05:00-07:00'
+        estimatedArrival:
+          type: string
+          format: date-time
+          description: Estimated arrival time with timezone
+          example: '2026-04-19T11:05:00-07:00'
+        gate:
+          type: string
+          description: Gate assignment
+          example: D6
+        terminal:
+          type: string
+          description: Terminal designation
+          example: S
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

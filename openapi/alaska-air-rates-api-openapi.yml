@@ -70,44 +70,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RateResponse:
-      title: RateResponse
-      type: object
-      description: Cargo rate estimate response
-      properties:
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: HNL
-        shipDate:
-          type: string
-          format: date
-          description: Ship date
-          example: '2026-04-20'
-        totalCharge:
-          type: number
-          description: Estimated total charge
-          example: 385.5
-        currency:
-          type: string
-          description: Currency code
-          example: USD
-        ratePerKg:
-          type: number
-          description: Rate per kilogram
-          example: 8.47
-        transitDays:
-          type: integer
-          description: Estimated transit days
-          example: 1
-        serviceType:
-          type: string
-          description: Service type
-          example: Standard
     RateRequest:
       title: RateRequest
       type: object
@@ -146,6 +108,44 @@ components:
           type: integer
           description: Number of pieces
           example: 3
+    RateResponse:
+      title: RateResponse
+      type: object
+      description: Cargo rate estimate response
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: HNL
+        shipDate:
+          type: string
+          format: date
+          description: Ship date
+          example: '2026-04-20'
+        totalCharge:
+          type: number
+          description: Estimated total charge
+          example: 385.5
+        currency:
+          type: string
+          description: Currency code
+          example: USD
+        ratePerKg:
+          type: number
+          description: Rate per kilogram
+          example: 8.47
+        transitDays:
+          type: integer
+          description: Estimated transit days
+          example: 1
+        serviceType:
+          type: string
+          description: Service type
+          example: Standard
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
