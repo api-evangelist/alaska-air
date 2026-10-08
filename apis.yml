@@ -208,6 +208,12 @@ apis:
   - type: Documentation
     url: https://www.alaskaair.com/content/mileage-plan
 common:
+  - type: Plans
+    url: plans/alaska-air-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/alaska-air-rate-limits.yml
+  - type: FinOps
+    url: finops/alaska-air-finops.yml
   - type: AgenticAccess
     url: agentic-access/alaska-air-agentic-access.yml
   - type: DomainSecurity
