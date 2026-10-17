@@ -102,6 +102,29 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ScheduleResponse:
+      title: ScheduleResponse
+      type: object
+      description: Flight schedule query response
+      properties:
+        origin:
+          type: string
+          description: Origin airport IATA code
+          example: SEA
+        destination:
+          type: string
+          description: Destination airport IATA code
+          example: LAX
+        departureDate:
+          type: string
+          format: date
+          description: Query departure date
+          example: '2026-04-19'
+        schedules:
+          type: array
+          description: List of scheduled flights
+          items:
+            $ref: '#/components/schemas/Schedule'
     Schedule:
       title: Schedule
       type: object
@@ -155,29 +178,6 @@ components:
           - Premium Class
           - Economy
           example: Economy
-    ScheduleResponse:
-      title: ScheduleResponse
-      type: object
-      description: Flight schedule query response
-      properties:
-        origin:
-          type: string
-          description: Origin airport IATA code
-          example: SEA
-        destination:
-          type: string
-          description: Destination airport IATA code
-          example: LAX
-        departureDate:
-          type: string
-          format: date
-          description: Query departure date
-          example: '2026-04-19'
-        schedules:
-          type: array
-          description: List of scheduled flights
-          items:
-            $ref: '#/components/schemas/Schedule'
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
