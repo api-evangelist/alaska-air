@@ -1,4 +1,4 @@
-# Alaska Airlines (alaska-air)
+# Alaska Airlines
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,183 +66,236 @@
 
 Alaska Air Group is the parent company of Alaska Airlines and Horizon Air, providing passenger and cargo air transportation throughout the United States, Mexico, Canada, Costa Rica, and Belize. Alaska Airlines offers a developer portal at developers.alaskaair.com for accessing flight status, schedules, and other APIs, and operates Alaska Air Cargo serving 115+ destinations worldwide with dedicated cargo aircraft.
 
-**URL:** [https://developers.alaskaair.com/](https://developers.alaskaair.com/)
+**Areas:** Airlines · Aviation · Travel · Cargo · Loyalty · Flight Status · Fortune 500
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Alaska Airlines on APIs.io
 
-## Tags:
+Everything profiled for Alaska Airlines is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/alaska-air/](https://apis.io/providers/alaska-air/)** — or go straight to one of the APIs or properties below.
 
- - Airlines, Aviation, Travel, Cargo, Loyalty, Flight Status
+### APIs (8)
 
-## Timestamps
+- [Alaska Airlines Airports API](https://apis.io/apis/alaska-air/alaska-air-airports-api/) — Airport information for Alaska Airlines served destinations
+- [Alaska Airlines Flight Status API](https://apis.io/apis/alaska-air/alaska-air-flight-status-api/) — Real-time flight status and tracking for Alaska Airlines and Horizon Air flights
+- [Alaska Airlines Members API](https://apis.io/apis/alaska-air/alaska-air-members-api/) — Mileage Plan member data and tier information
+- [Alaska Airlines Partner Miles API](https://apis.io/apis/alaska-air/alaska-air-partner-miles-api/) — Partner mile reporting for hotel, car rental, and retail activities
+- [Alaska Airlines Rates API](https://apis.io/apis/alaska-air/alaska-air-rates-api/) — Cargo rate estimation
+- [Alaska Airlines Schedules API](https://apis.io/apis/alaska-air/alaska-air-schedules-api/) — Flight schedule data for Alaska Airlines and Horizon Air routes
+- [Alaska Airlines Shipments API](https://apis.io/apis/alaska-air/alaska-air-shipments-api/) — Cargo shipment booking and tracking operations
+- [Alaska Airlines Transactions API](https://apis.io/apis/alaska-air/alaska-air-transactions-api/) — Mile earn and redemption transaction history
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Alaska Airlines Flight Status API
-The Alaska Airlines Flight Status API provides real-time flight status, departure and arrival information, gate assignments, and delay details for Alaska Airlines (AS) and Horizon Air (QX) flights.
+#### Agentic access (1)
 
-**Human URL:** [https://developers.alaskaair.com/](https://developers.alaskaair.com/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Alaska Air Agentic Access](https://apis.io/agentic-access/alaska-air/alaska-air-agentic-access/)
 
- - Flight Status, Aviation, Real-Time Data
+#### JSON Schema (22)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developers.alaskaair.com/)
-- [APIReference](https://developers.alaskaair.com/)
-- [OpenAPI](openapi/alaska-air-flight-status-openapi.yaml)
+- [Dimensions](https://apis.io/schemas/alaska-air/alaska-air-cargo-dimensions/)
+- [RateRequest](https://apis.io/schemas/alaska-air/alaska-air-cargo-rate-request/)
+- [RateResponse](https://apis.io/schemas/alaska-air/alaska-air-cargo-rate-response/)
+- [Shipment](https://apis.io/schemas/alaska-air/alaska-air-cargo-shipment/)
+- [ShipmentList](https://apis.io/schemas/alaska-air/alaska-air-cargo-shipment-list/)
+- [ShipmentRequest](https://apis.io/schemas/alaska-air/alaska-air-cargo-shipment-request/)
+- [ShipmentTracking](https://apis.io/schemas/alaska-air/alaska-air-cargo-shipment-tracking/)
+- [TrackingEvent](https://apis.io/schemas/alaska-air/alaska-air-cargo-tracking-event/)
+- [AirportInfo](https://apis.io/schemas/alaska-air/alaska-air-flight-schedules-airport-info/)
+- [AirportList](https://apis.io/schemas/alaska-air/alaska-air-flight-schedules-airport-list/)
+- [Schedule](https://apis.io/schemas/alaska-air/alaska-air-flight-schedules-schedule/)
+- [ScheduleResponse](https://apis.io/schemas/alaska-air/alaska-air-flight-schedules-schedule-response/)
+- [Aircraft](https://apis.io/schemas/alaska-air/alaska-air-flight-status-aircraft/)
+- [Airport](https://apis.io/schemas/alaska-air/alaska-air-flight-status-airport/)
+- [FlightList](https://apis.io/schemas/alaska-air/alaska-air-flight-status-flight-list/)
+- [FlightStatus](https://apis.io/schemas/alaska-air/alaska-air-flight-status-flight-status/)
+- [FlightSummary](https://apis.io/schemas/alaska-air/alaska-air-flight-status-flight-summary/)
+- [Member](https://apis.io/schemas/alaska-air/alaska-air-mileage-plan-member/)
+- [PartnerMilesRequest](https://apis.io/schemas/alaska-air/alaska-air-mileage-plan-partner-miles-request/)
+- [PartnerMilesResponse](https://apis.io/schemas/alaska-air/alaska-air-mileage-plan-partner-miles-response/)
+- [Transaction](https://apis.io/schemas/alaska-air/alaska-air-mileage-plan-transaction/)
+- [TransactionList](https://apis.io/schemas/alaska-air/alaska-air-mileage-plan-transaction-list/)
 
-### Alaska Airlines Flight Schedules API
-The Alaska Airlines Flight Schedules API provides access to flight schedule data including route information, operating days, departure and arrival times, and equipment information across the Alaska Airlines and Horizon Air networks.
+#### JSON Structure (22)
 
-**Human URL:** [https://developers.alaskaair.com/](https://developers.alaskaair.com/)
+Data models expressed in JSON Structure.
 
-#### Tags:
+- [Alaska Air Cargo Dimensions Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-dimensions-structure/)
+- [Alaska Air Cargo Rate Request Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-rate-request-structure/)
+- [Alaska Air Cargo Rate Response Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-rate-response-structure/)
+- [Alaska Air Cargo Shipment List Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-shipment-list-structure/)
+- [Alaska Air Cargo Shipment Request Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-shipment-request-structure/)
+- [Alaska Air Cargo Shipment Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-shipment-structure/)
+- [Alaska Air Cargo Shipment Tracking Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-shipment-tracking-structure/)
+- [Alaska Air Cargo Tracking Event Structure](https://apis.io/json-structure/alaska-air/alaska-air-cargo-tracking-event-structure/)
+- [Alaska Air Flight Schedules Airport Info Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-schedules-airport-info-structure/)
+- [Alaska Air Flight Schedules Airport List Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-schedules-airport-list-structure/)
+- [Alaska Air Flight Schedules Schedule Response Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-schedules-schedule-response-structure/)
+- [Alaska Air Flight Schedules Schedule Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-schedules-schedule-structure/)
+- [Alaska Air Flight Status Aircraft Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-status-aircraft-structure/)
+- [Alaska Air Flight Status Airport Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-status-airport-structure/)
+- [Alaska Air Flight Status Flight List Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-status-flight-list-structure/)
+- [Alaska Air Flight Status Flight Status Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-status-flight-status-structure/)
+- [Alaska Air Flight Status Flight Summary Structure](https://apis.io/json-structure/alaska-air/alaska-air-flight-status-flight-summary-structure/)
+- [Alaska Air Mileage Plan Member Structure](https://apis.io/json-structure/alaska-air/alaska-air-mileage-plan-member-structure/)
+- [Alaska Air Mileage Plan Partner Miles Request Structure](https://apis.io/json-structure/alaska-air/alaska-air-mileage-plan-partner-miles-request-structure/)
+- [Alaska Air Mileage Plan Partner Miles Response Structure](https://apis.io/json-structure/alaska-air/alaska-air-mileage-plan-partner-miles-response-structure/)
+- [Alaska Air Mileage Plan Transaction List Structure](https://apis.io/json-structure/alaska-air/alaska-air-mileage-plan-transaction-list-structure/)
+- [Alaska Air Mileage Plan Transaction Structure](https://apis.io/json-structure/alaska-air/alaska-air-mileage-plan-transaction-structure/)
 
- - Schedules, Aviation, Itinerary
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developers.alaskaair.com/)
-- [OpenAPI](openapi/alaska-air-flight-schedules-openapi.yaml)
+- [Alaska Air Context](https://apis.io/jsonld/alaska-air/alaska-air-context/)
 
-### Alaska Air Cargo API
-Alaska Air Cargo APIs enable partners to book shipments, track cargo, get rate estimates, and access schedules across 115+ cargo destinations worldwide. Alaska Airlines operates the only U.S. passenger airline with dedicated cargo aircraft including Airbus A330s and Boeing 787s.
+#### Vocabulary (1)
 
-**Human URL:** [https://www.alaskacargo.com/](https://www.alaskacargo.com/)
+The provider's domain terms, defined.
 
-#### Tags:
+- [Alaska Air Vocabulary](https://apis.io/vocabularies/alaska-air/alaska-air-vocabulary/)
 
- - Cargo, Freight, Shipping, Tracking
+#### Examples (22)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://www.alaskacargo.com/)
-- [Portal](https://www.alaskacargo.com/)
-- [OpenAPI](openapi/alaska-air-cargo-openapi.yaml)
+- [Alaska Air Cargo Dimensions Example](https://apis.io/examples/alaska-air/alaska-air-cargo-dimensions-example/)
+- [Alaska Air Cargo Rate Request Example](https://apis.io/examples/alaska-air/alaska-air-cargo-rate-request-example/)
+- [Alaska Air Cargo Rate Response Example](https://apis.io/examples/alaska-air/alaska-air-cargo-rate-response-example/)
+- [Alaska Air Cargo Shipment Example](https://apis.io/examples/alaska-air/alaska-air-cargo-shipment-example/)
+- [Alaska Air Cargo Shipment List Example](https://apis.io/examples/alaska-air/alaska-air-cargo-shipment-list-example/)
+- [Alaska Air Cargo Shipment Request Example](https://apis.io/examples/alaska-air/alaska-air-cargo-shipment-request-example/)
+- [Alaska Air Cargo Shipment Tracking Example](https://apis.io/examples/alaska-air/alaska-air-cargo-shipment-tracking-example/)
+- [Alaska Air Cargo Tracking Event Example](https://apis.io/examples/alaska-air/alaska-air-cargo-tracking-event-example/)
+- [Alaska Air Flight Schedules Airport Info Example](https://apis.io/examples/alaska-air/alaska-air-flight-schedules-airport-info-example/)
+- [Alaska Air Flight Schedules Airport List Example](https://apis.io/examples/alaska-air/alaska-air-flight-schedules-airport-list-example/)
+- [Alaska Air Flight Schedules Schedule Example](https://apis.io/examples/alaska-air/alaska-air-flight-schedules-schedule-example/)
+- [Alaska Air Flight Schedules Schedule Response Example](https://apis.io/examples/alaska-air/alaska-air-flight-schedules-schedule-response-example/)
+- [Alaska Air Flight Status Aircraft Example](https://apis.io/examples/alaska-air/alaska-air-flight-status-aircraft-example/)
+- [Alaska Air Flight Status Airport Example](https://apis.io/examples/alaska-air/alaska-air-flight-status-airport-example/)
+- [Alaska Air Flight Status Flight List Example](https://apis.io/examples/alaska-air/alaska-air-flight-status-flight-list-example/)
+- [Alaska Air Flight Status Flight Status Example](https://apis.io/examples/alaska-air/alaska-air-flight-status-flight-status-example/)
+- [Alaska Air Flight Status Flight Summary Example](https://apis.io/examples/alaska-air/alaska-air-flight-status-flight-summary-example/)
+- [Alaska Air Mileage Plan Member Example](https://apis.io/examples/alaska-air/alaska-air-mileage-plan-member-example/)
+- [Alaska Air Mileage Plan Partner Miles Request Example](https://apis.io/examples/alaska-air/alaska-air-mileage-plan-partner-miles-request-example/)
+- [Alaska Air Mileage Plan Partner Miles Response Example](https://apis.io/examples/alaska-air/alaska-air-mileage-plan-partner-miles-response-example/)
+- [Alaska Air Mileage Plan Transaction Example](https://apis.io/examples/alaska-air/alaska-air-mileage-plan-transaction-example/)
+- [Alaska Air Mileage Plan Transaction List Example](https://apis.io/examples/alaska-air/alaska-air-mileage-plan-transaction-list-example/)
 
-### Alaska Airlines Mileage Plan API
-The Alaska Mileage Plan partner API enables airline partners, hotel chains, car rental companies, and other loyalty partners to report and redeem miles for members. Alaska's Mileage Plan is consistently rated among the top frequent flyer programs.
+#### Collections (8)
 
-**Human URL:** [https://www.alaskaair.com/content/mileage-plan](https://www.alaskaair.com/content/mileage-plan)
+Postman and Open Collection request collections.
 
-#### Tags:
+- [Alaska Air Cargo Airports API](https://apis.io/collections/alaska-air/open-alaska-air-airports-api/)
+- [Alaska Air Cargo Airports Flight Status API](https://apis.io/collections/alaska-air/open-alaska-air-flight-status-api/)
+- [Alaska Air Cargo Airports Members API](https://apis.io/collections/alaska-air/open-alaska-air-members-api/)
+- [Alaska Air Cargo Airports Partner Miles API](https://apis.io/collections/alaska-air/open-alaska-air-partner-miles-api/)
+- [Alaska Air Cargo Airports Rates API](https://apis.io/collections/alaska-air/open-alaska-air-rates-api/)
+- [Alaska Air Cargo Airports Schedules API](https://apis.io/collections/alaska-air/open-alaska-air-schedules-api/)
+- [Alaska Air Cargo Airports Shipments API](https://apis.io/collections/alaska-air/open-alaska-air-shipments-api/)
+- [Alaska Air Cargo Airports Transactions API](https://apis.io/collections/alaska-air/open-alaska-air-transactions-api/)
 
- - Loyalty, Mileage Plan, Rewards, Partners
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://www.alaskaair.com/content/mileage-plan)
-- [OpenAPI](openapi/alaska-air-mileage-plan-openapi.yaml)
+- [Alaska Airlines — jsonschema rules](https://apis.io/rules/alaska-air/alaska-air-jsonschema-spectral-rules/)
+- [Alaska Airlines API Rules](https://apis.io/rules/alaska-air/alaska-air-spectral-rules/)
 
-## Common Properties
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Alaska Air Authentication](https://apis.io/security/alaska-air/alaska-air-authentication/)
+- [Alaska Air Domain Security](https://apis.io/security/alaska-air/alaska-air-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Alaska Air Scopes](https://apis.io/scopes/alaska-air/alaska-air-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Alaska Air Plans Pricing](https://apis.io/plans/alaska-air/alaska-air-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Alaska Air Rate Limits](https://apis.io/rate-limits/alaska-air/alaska-air-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Alaska Air Finops](https://apis.io/finops/alaska-air/alaska-air-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.alaskaair.com)
-- [Portal](https://developers.alaskaair.com/)
-- [Documentation - Alaska Air Cargo Portal](https://www.alaskacargo.com/)
+- [Documentation](https://www.alaskacargo.com/)
+- [Support](https://www.alaskaair.com/content/about-us/investor-relations)
+- [Blog](https://www.alaskaair.com/content/about-us/news-and-events)
+- [GitHub](https://github.com/AlaskaAirlines)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Real-Time Flight Status | Track live flight status, departure and arrival times, gate assignments, and delay information for Alaska Airlines and Horizon Air flights. |
-| Flight Schedules | Access flight schedule data including routes, operating days, departure/arrival times, and equipment across the Alaska network. |
-| Cargo Booking and Tracking | Book shipments and track cargo across 115+ destinations worldwide via Alaska Air Cargo's network, including dedicated widebody aircraft. |
-| Cargo Rate Estimates | Get real-time rate estimates for cargo shipments based on origin, destination, weight, dimensions, and special handling requirements. |
-| Mileage Plan Partner Integration | Enable partner mile accrual and redemption for Alaska's Mileage Plan loyalty program across airline, hotel, car rental, and retail partners. |
-| Dedicated Cargo Aircraft | Alaska Air Cargo operates the only U.S. passenger airline with dedicated cargo aircraft (Airbus A330s and Boeing 787s) for increased capacity on key routes. |
-| Specialized Cargo Services | Support for dangerous goods transport, live animal shipments via Pet Connect, and international cargo across Asia, Pacific, Canada, and Mexico. |
-| API Management via Azure | Developer portal powered by Microsoft Azure API Management with subscription-based key management, interactive API console, and automatic API documentation generation. |
+**Kin Score 26.6** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 21.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 5.3 |
 
-| Name | Description |
-|------|-------------|
-| Travel Agent and OTA Integration | Integrate Alaska Airlines flight schedules and status into online travel agencies and booking platforms for real-time availability and status updates. |
-| Cargo Partner Booking | Enable freight forwarders and cargo brokers to book shipments, get rate quotes, and track Alaska Air Cargo shipments programmatically. |
-| Loyalty Partner Mile Reporting | Integrate Mileage Plan mile accrual into partner platforms (hotels, car rentals, credit cards) to automatically report earned miles. |
-| Airport Operations Display | Power airport operations systems and display boards with real-time Alaska Airlines flight status and gate assignment data. |
-| Corporate Travel Management | Integrate Alaska Airlines flight data into corporate travel management systems for booking, tracking, and expense reporting. |
-| Mobile App Integration | Embed Alaska Airlines flight status and schedule data into third-party mobile applications for travelers. |
+**Agent readiness 22.9** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Microsoft Azure API Management | Developer portal and API gateway powered by Azure API Management with subscription key management and interactive testing console. |
-| Hawaiian Airlines | Alaska Air Cargo partnerships including connections with Hawaiian Airlines cargo network for Pacific and inter-island routes. |
-| One World Alliance | Member of the oneworld airline alliance enabling Mileage Plan accrual and redemption across 13 member airlines. |
-| Duffel | Third-party travel API provider enabling search, booking, and ticket issuance for Alaska Airlines flights. |
-| Five9 | Customer service platform integration for Alaska Air Cargo live chat and support operations. |
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/alaska-air/](https://apis.io/providers/alaska-air/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Alaska Airlines Flight Status API](openapi/alaska-air-flight-status-openapi.yaml)
-- [Alaska Airlines Flight Schedules API](openapi/alaska-air-flight-schedules-openapi.yaml)
-- [Alaska Air Cargo API](openapi/alaska-air-cargo-openapi.yaml)
-- [Alaska Airlines Mileage Plan API](openapi/alaska-air-mileage-plan-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Alaska Airlines: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [alaska-air-flight-status-flight-status-schema.json](json-schema/alaska-air-flight-status-flight-status-schema.json)
-- [alaska-air-flight-status-flight-list-schema.json](json-schema/alaska-air-flight-status-flight-list-schema.json)
-- [alaska-air-flight-schedules-schedule-schema.json](json-schema/alaska-air-flight-schedules-schedule-schema.json)
-- [alaska-air-flight-schedules-airport-info-schema.json](json-schema/alaska-air-flight-schedules-airport-info-schema.json)
-- [alaska-air-cargo-shipment-schema.json](json-schema/alaska-air-cargo-shipment-schema.json)
-- [alaska-air-cargo-shipment-tracking-schema.json](json-schema/alaska-air-cargo-shipment-tracking-schema.json)
-- [alaska-air-cargo-rate-response-schema.json](json-schema/alaska-air-cargo-rate-response-schema.json)
-- [alaska-air-mileage-plan-member-schema.json](json-schema/alaska-air-mileage-plan-member-schema.json)
-- [alaska-air-mileage-plan-transaction-schema.json](json-schema/alaska-air-mileage-plan-transaction-schema.json)
-
-### JSON Structure
-
-- [alaska-air-flight-status-flight-status-structure.json](json-structure/alaska-air-flight-status-flight-status-structure.json)
-- [alaska-air-cargo-shipment-structure.json](json-structure/alaska-air-cargo-shipment-structure.json)
-- [alaska-air-mileage-plan-member-structure.json](json-structure/alaska-air-mileage-plan-member-structure.json)
-
-### JSON-LD
-
-- [alaska-air-context.jsonld](json-ld/alaska-air-context.jsonld)
-
-### Examples
-
-- [alaska-air-flight-status-flight-status-example.json](examples/alaska-air-flight-status-flight-status-example.json)
-- [alaska-air-cargo-shipment-example.json](examples/alaska-air-cargo-shipment-example.json)
-- [alaska-air-mileage-plan-member-example.json](examples/alaska-air-mileage-plan-member-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Alaska Airlines Flight Status API](capabilities/shared/flight-status-api.yaml) — 2 operations for flight status and route listing
-- [Alaska Air Cargo API](capabilities/shared/cargo-api.yaml) — 4 operations for shipment booking, tracking, and rate estimation
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Travel Operations](capabilities/travel-operations.yaml) | alaska-flight-status, alaska-cargo | 5 | Travel Agent, Freight Forwarder, Corporate Travel Manager |
-
-## Vocabulary
-
-- [Alaska Airlines Vocabulary](vocabulary/alaska-air-vocabulary.yaml) — Unified taxonomy mapping 7 resources, 5 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Alaska Airlines Spectral Rules](rules/alaska-air-spectral-rules.yml) — 29 rules across 10 categories enforcing Alaska Airlines API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/alaska-air/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
