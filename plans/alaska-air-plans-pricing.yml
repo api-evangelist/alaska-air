@@ -1,0 +1,71 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Alaska Airlines
+providerId: alaska-air
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Airlines
+  - Aviation
+  - Travel
+  - Cargo
+  - Loyalty
+  - Flight Status
+description: Alaska Airlines does not operate a public developer portal with published API pricing tiers
+  for its flight-status, schedules, cargo, or Mileage Plan APIs. Integrations are typically partner agreements
+  - GDS connections (Sabre/Amadeus/Travelport), corporate booking partners, NDC channels, and direct cargo
+  agent agreements - with bespoke commercial terms.
+sources:
+  - https://www.alaskaair.com
+  - https://www.alaskacargo.com
+notes: No public API pricing surface. Plans below are placeholder partner-agreement shells; replace with
+  partner-contracted terms when documented for a specific channel.
+plans:
+  - id: alaska-air-partner
+    name: Partner / Distribution Agreement
+    type: enterprise
+    description: Direct integration agreement covering Alaska Airlines flight, schedule, cargo, or Mileage
+      Plan APIs. Pricing is bespoke and negotiated by Alaska distribution / cargo / loyalty teams.
+    entries:
+      - label: Channel Access
+        description: Negotiated channel access for partner integrations (GDS, corporate booking, NDC, cargo
+          agents, loyalty partners)
+        name: channel_access
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: configurable
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Alaska Airlines Flight Status API
+      - name: Alaska Airlines Flight Schedules API
+      - name: Alaska Air Cargo API
+      - name: Alaska Airlines Mileage Plan API
+      - name: Partner Account Management
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: Partner / Distribution Agreement
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
